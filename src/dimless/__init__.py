@@ -2,7 +2,8 @@ import json
 from importlib.resources import files
 
 _base = files("dimless").joinpath("data")
-_numbers = _base.joinpath("numbers")
+_numbers = json.loads(_base.joinpath("numbers.json").read_text())
+_numbers_by_id = {n["id"]: n for n in _numbers}
 
 
 def quantities():
@@ -10,16 +11,13 @@ def quantities():
 
 
 def number(key: str):
-    return json.loads(_numbers.joinpath(f"{key}.json").read_text())
+    return _numbers_by_id[key]
 
 
 def search(text: str):
     text = text.lower()
     out = []
-    for path in _numbers.iterdir():
-        if path.suffix != ".json":
-            continue
-        obj = json.loads(path.read_text())
+    for obj in _numbers:
         hay = " ".join(
             [
                 obj.get("id", ""),
