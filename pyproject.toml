@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dimless"
+version = "0.1.0"
+description = "Encyclopedia of dimensionless numbers in physics and engineering"
+authors = [
+    { name = "Michal Habera", email = "michal.habera@uni.lu" },
+    { name = "Andreas Zilian", email = "andreas.zilian@uni.lu" },
+]
+license = "MIT"
+readme = "README.md"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.package-data]
+dimless = ["data/*.json", "data/numbers/*.json"]
+
+[tool.ruff]
+line-length = 100
+indent-width = 4

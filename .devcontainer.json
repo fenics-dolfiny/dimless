@@ -1,9 +1,15 @@
 {
   "name": "dimless",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
   "customizations": {
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "Anthropic.claude-code"],
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "Anthropic.claude-code",
+        "tamasfe.even-better-toml",
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ],
       "settings": {
         "[json]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -11,8 +17,12 @@
         "[jsonc]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
       }
     }
-  }
+  },
+  "postCreateCommand": "pip install -e ."
 }

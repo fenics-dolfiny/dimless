@@ -1,0 +1,5 @@
+test:
+  image: python:3.13-slim
+  script:
+    - pip install -e ".[dev]"
+    - pytest tests/
