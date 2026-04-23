@@ -1,0 +1,11 @@
+{
+  "id": "strouhal",
+  "name": "Strouhal number",
+  "symbol": "St",
+  "aliases": [],
+  "quantities": ["frequency", "length", "velocity"],
+  "exponents": [1, 1, -1],
+  "meaning": "ratio of oscillation timescale to convective timescale",
+  "domain": "fluid-mechanics",
+  "see_also": ["reynolds", "froude"]
+}

@@ -1,0 +1,40 @@
+{
+  "dimension_order": ["N", "I", "L", "J", "M", "Theta", "T"],
+  "quantities": {
+    "density": {
+      "name": "mass density",
+      "symbol": "\\rho",
+      "dimension": [0, 0, -3, 0, 1, 0, 0]
+    },
+    "velocity": {
+      "name": "velocity",
+      "symbol": "U",
+      "dimension": [0, 0, 1, 0, 0, 0, -1]
+    },
+    "length": {
+      "name": "characteristic length",
+      "symbol": "L",
+      "dimension": [0, 0, 1, 0, 0, 0, 0]
+    },
+    "dynamic-viscosity": {
+      "name": "dynamic viscosity",
+      "symbol": "\\mu",
+      "dimension": [0, 0, -1, 0, 1, 0, -1]
+    },
+    "pressure-difference": {
+      "name": "pressure difference",
+      "symbol": "\\Delta p",
+      "dimension": [0, 0, -1, 0, 1, 0, -2]
+    },
+    "frequency": {
+      "name": "frequency",
+      "symbol": "f",
+      "dimension": [0, 0, 0, 0, 0, 0, -1]
+    },
+    "gravitational-acceleration": {
+      "name": "gravitational acceleration",
+      "symbol": "g",
+      "dimension": [0, 0, 1, 0, 0, 0, -2]
+    }
+  }
+}
