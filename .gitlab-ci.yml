@@ -31,7 +31,7 @@ pages:
     - hugo version
     - cd site
     - ls -la
-    - hugo --gc --minify --verbose --printPathWarnings --baseURL "$CI_PAGES_URL"
+    - hugo --gc --minify --logLevel info --printPathWarnings --baseURL "$CI_PAGES_URL"
     - mv public ../public
     - cd ..
     - echo "=== Deployed tree ==="
