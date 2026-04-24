@@ -5,7 +5,7 @@ test:
     - pytest tests/
 
 pages:
-  image: hugomods/hugo:exts
+  image: hugomods/hugo:debian-nightly
   script:
     - cd site
     - hugo --gc --minify
