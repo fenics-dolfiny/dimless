@@ -1,4 +1,4 @@
-# baseURL = "http://localhost:1313/"
+baseURL = "https://dimless-5d63d6.gitlab.io/"
 languageCode = "en-us"
 title = "Encyclopedia of dimensionless numbers"
 enableRobotsTXT = true
