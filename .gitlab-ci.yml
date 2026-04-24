@@ -1,47 +1,22 @@
-# Collapsible script sections in the job log (nicer output).
-variables:
-  FF_SCRIPT_SECTIONS: "true"
-  # CI_DEBUG_TRACE: "true"   # ⚠ DO NOT enable on protected branches — see note below
-
-# Shared debug preamble: echo every shell command, fail on error, and dump context.
-.debug_before_script: &debug_before_script
-  - set -euxo pipefail
-  - echo "=== Runner / job context ==="
-  - echo "CI_JOB_NAME=$CI_JOB_NAME  CI_JOB_ID=$CI_JOB_ID"
-  - echo "CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH  CI_DEFAULT_BRANCH=$CI_DEFAULT_BRANCH"
-  - echo "CI_COMMIT_SHA=$CI_COMMIT_SHA"
-  - echo "CI_PAGES_URL=${CI_PAGES_URL:-<unset>}"
-  - echo "CI_PIPELINE_SOURCE=$CI_PIPELINE_SOURCE"
-  - echo "PWD=$(pwd)"; uname -a
-  - echo "==========================="
-
 test:
   image: python:3.13-slim
-  before_script: *debug_before_script
   script:
-    - python -V && pip -V
     - pip install -e ".[dev]"
-    - pip list
-    - pytest -vv --tb=short --color=yes tests/
+    - pytest tests/
 
 pages:
   image: hugomods/hugo:debian-nightly
-  before_script: *debug_before_script
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    GIT_SUBMODULE_DEPTH: 1
   script:
-    - hugo version
     - cd site
-    - ls -la
-    - hugo --gc --minify --logLevel info --printPathWarnings --baseURL "$CI_PAGES_URL"
+    - hugo --gc --minify --baseURL "$CI_PAGES_URL"
     - mv public ../public
     - cd ..
-    - echo "=== Deployed tree ==="
-    - find public -type f | sort
-    - echo "=== index.html head ==="
-    - head -n 20 public/index.html || echo "!! no index.html at public/ root"
-    - du -sh public
+    - test -f public/index.html
   artifacts:
     paths:
       - public
-    expire_in: 1 week # keep a few recent builds around for diffing
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
