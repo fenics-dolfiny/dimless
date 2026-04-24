@@ -1,0 +1,10 @@
+# baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Encyclopedia of dimensionless numbers"
+enableRobotsTXT = true
+theme = "book"
+copyright = "© 2026 Michal Habera and Andreas Zilian."
+
+[params]
+  BookLogo = "logo.svg"
+  BookFavicon = "favicon.ico"

@@ -5,3 +5,5 @@ dist/
 build/
 .eggs/
 .pytest_cache/
+
+site/public/

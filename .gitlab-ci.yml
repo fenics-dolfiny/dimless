@@ -3,3 +3,15 @@ test:
   script:
     - pip install -e ".[dev]"
     - pytest tests/
+
+pages:
+  image: hugomods/hugo:exts
+  script:
+    - cd site
+    - hugo --gc --minify
+    - mv public ../public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
