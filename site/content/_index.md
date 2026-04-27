@@ -2,7 +2,7 @@
 title = "Encyclopedia of dimensionless numbers"
 +++
 
-<img src="/logo.svg" alt="Logo" style="display:block;margin:2rem auto 1rem;width:96px;height:96px;">
+<img src="logo.svg" alt="Logo" style="display:block;margin:2rem auto 1rem;width:96px;height:96px;">
 
 # Encyclopedia of dimensionless numbers
 

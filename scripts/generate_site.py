@@ -79,9 +79,7 @@ def regime_svg(regimes: dict[str, Any]) -> str:
             / (math.log10(display_hi) - math.log10(display_lo))
         )
 
-    defs = [
-        "<style>.regime:hover .bar{filter:brightness(0.85)}</style>"
-    ]
+    defs = ["<style>.regime:hover .bar{filter:brightness(0.85)}</style>"]
     rows = []
 
     for i, label in enumerate(labels):
@@ -225,7 +223,7 @@ def write_home_page(
         HOME_OUT,
         ['title = "Encyclopedia of dimensionless numbers"'],
         [
-            '<img src="/logo.svg" alt="Logo" style="display:block;margin:2rem auto 1rem;width:96px;height:96px;">',
+            '<img src="logo.svg" alt="Logo" style="display:block;margin:2rem auto 1rem;width:96px;height:96px;">',
             "",
             "# Encyclopedia of dimensionless numbers",
             "",
