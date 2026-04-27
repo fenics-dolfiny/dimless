@@ -5,6 +5,18 @@ enableRobotsTXT = true
 theme = "book"
 copyright = "© 2026 Michal Habera and Andreas Zilian."
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
 [params]
+  math = true
   BookLogo = "logo.svg"
   BookFavicon = "favicon.ico"

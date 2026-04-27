@@ -1,5 +1,13 @@
 {
-  "dimension_order": ["N", "I", "L", "J", "M", "Theta", "T"],
+  "dimension_order": [
+    "\\text N",
+    "\\text I",
+    "\\text L",
+    "\\text J",
+    "\\text M",
+    "\\Theta",
+    "\\text T"
+  ],
   "quantities": {
     "density": {
       "name": "mass density",
@@ -35,6 +43,16 @@
       "name": "gravitational acceleration",
       "symbol": "g",
       "dimension": [0, 0, 1, 0, 0, 0, -2]
+    },
+    "convective-heat-transfer-coefficient": {
+      "name": "convective heat transfer coefficient",
+      "symbol": "h",
+      "dimension": [0, 0, 0, 0, 1, -1, -3]
+    },
+    "thermal-conductivity": {
+      "name": "thermal conductivity",
+      "symbol": "k",
+      "dimension": [0, 0, 1, 0, 1, -1, -3]
     }
   }
 }

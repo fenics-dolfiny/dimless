@@ -2,45 +2,100 @@
   {
     "id": "euler",
     "name": "Euler number",
-    "symbol": "Eu",
+    "symbol": "\\text{Eu}",
     "aliases": [],
     "quantities": ["pressure-difference", "density", "velocity"],
     "exponents": [1, -1, -2],
-    "meaning": "ratio of pressure to inertial effects",
+    "numer": "pressure gradient due to friction",
+    "denom": "inertial pressure",
+    "regimes": {
+      "thresholds": [0, 0.7, 0.9, 1.1, null],
+      "labels": ["high inertia", "real-world", "ideal", "friction dominant"],
+      "descriptions": [
+        "Inertial forces dominate. Pressure drop is small compared to dynamic pressure.",
+        "Typical for many engineering applications. Both inertial and frictional effects are important.",
+        "Idealized limit where inertial and frictional effects are balanced. Useful for theoretical analysis.",
+        "Frictional forces dominate. Pressure drop is large compared to dynamic pressure."
+      ]
+    },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
   },
   {
     "id": "froude",
     "name": "Froude number",
-    "symbol": "Fr",
+    "symbol": "\\text{Fr}",
     "aliases": [],
     "quantities": ["velocity", "gravitational-acceleration", "length"],
     "exponents": [1, -0.5, -0.5],
-    "meaning": "ratio of inertial to gravitational effects",
+    "numer": "inertial effects",
+    "denom": "gravitational effects",
+    "regimes": {
+      "thresholds": [0, 1, null],
+      "labels": ["subcritical (tranquil)", "supercritical (rapid)"],
+      "descriptions": [
+        "Flow velocity is less than wave speed. Disturbances can propagate upstream. Common in rivers and open channels.",
+        "Flow velocity exceeds wave speed. Disturbances cannot propagate upstream. Occurs in steep channels and spillways."
+      ]
+    },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "euler", "strouhal"]
   },
   {
     "id": "reynolds",
     "name": "Reynolds number",
-    "symbol": "Re",
+    "symbol": "\\text{Re}",
     "aliases": [],
     "quantities": ["density", "velocity", "length", "dynamic-viscosity"],
     "exponents": [1, 1, 1, -1],
-    "meaning": "ratio of inertial to viscous effects",
+    "numer": "inertial effects",
+    "denom": "viscous effects",
+    "regimes": {
+      "thresholds": [0, 2300, 4000, null],
+      "labels": ["laminar", "transitional", "turbulent"],
+      "descriptions": [
+        "Smooth, ordered flow. Viscous forces dominate. Velocity profile is parabolic in pipes.",
+        "",
+        "Chaotic, diffusive flow. Inertial forces dominate. Enhanced mixing and heat transfer."
+      ]
+    },
     "domain": "fluid-mechanics",
     "see_also": ["euler", "froude", "strouhal"]
   },
   {
     "id": "strouhal",
     "name": "Strouhal number",
-    "symbol": "St",
+    "symbol": "\\text{St}",
     "aliases": [],
     "quantities": ["frequency", "length", "velocity"],
     "exponents": [1, 1, -1],
-    "meaning": "ratio of oscillation timescale to convective timescale",
+    "numer": "oscillation timescale",
+    "denom": "convective timescale",
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
+  },
+  {
+    "id": "nusselt",
+    "name": "Nusselt number",
+    "symbol": "\\text{Nu}",
+    "aliases": [],
+    "quantities": [
+      "convective-heat-transfer-coefficient",
+      "length",
+      "thermal-conductivity"
+    ],
+    "exponents": [1, 1, -1],
+    "numer": "total heat transfer",
+    "denom": "conductive heat transfer",
+    "regimes": {
+      "thresholds": [1, 2, null],
+      "labels": ["conduction dominated", "convection dominated"],
+      "descriptions": [
+        "Heat transfer is dominated by conduction. Occurs in stagnant fluids or thin boundary layers.",
+        "Heat transfer is dominated by convection. Occurs in well-mixed fluids or thick boundary layers."
+      ]
+    },
+    "domain": "heat-transfer",
+    "see_also": []
   }
 ]

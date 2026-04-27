@@ -10,6 +10,7 @@ pages:
     GIT_SUBMODULE_STRATEGY: recursive
     GIT_SUBMODULE_DEPTH: 1
   script:
+    - python scripts/generate_site.py
     - cd site
     - hugo --gc --minify --baseURL "$CI_PAGES_URL"
     - mv public ../public
