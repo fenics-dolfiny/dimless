@@ -10,6 +10,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 NUMBERS_JSON = ROOT / "src" / "dimless" / "data" / "numbers.json"
 QUANTITIES_JSON = ROOT / "src" / "dimless" / "data" / "quantities.json"
+HOME_OUT = ROOT / "site" / "content" / "_index.md"
 NUMBERS_OUT = ROOT / "site" / "content" / "docs" / "numbers"
 QUANTITIES_OUT = ROOT / "site" / "content" / "docs" / "quantities"
 DOMAINS_OUT = ROOT / "site" / "content" / "docs" / "domains"
@@ -192,6 +193,48 @@ def write_number_page(
     )
 
 
+def write_home_page(
+    numbers: list[dict[str, Any]], quantities: dict[str, Any], domains: dict[str, Any]
+) -> None:
+    n_numbers = len(numbers)
+    n_quantities = len(quantities)
+    n_domains = len(domains)
+    write_page(
+        HOME_OUT,
+        ['title = "Encyclopedia of dimensionless numbers"'],
+        [
+            '<img src="/logo.svg" alt="Logo" style="display:block;margin:2rem auto 1rem;width:96px;height:96px;">',
+            "",
+            "# Encyclopedia of dimensionless numbers",
+            "",
+            "Dimensionless numbers appear throughout science and engineering whenever a physical",
+            "phenomenon can be characterised by the ratio of two competing effects — inertia versus",
+            "viscosity, convection versus conduction, oscillation versus transport. Because they carry",
+            "no units, the same number describes the same physical balance regardless of the scale or",
+            "the working fluid, making them the natural language of similarity, scaling, and",
+            "dimensional analysis.",
+            "",
+            "**Current database**",
+            "",
+            '<div style="display:flex;justify-content:center;margin:1.5rem 0">',
+            '  <div style="display:inline-flex;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;text-align:center">',
+            f'    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">{n_numbers}</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">numbers</div></div>',
+            f'    <div style="padding:1rem 2.5rem;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0"><div style="font-size:2rem;font-weight:700;color:#1e293b">{n_quantities}</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">quantities</div></div>',
+            f'    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">{n_domains}</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">domains</div></div>',
+            "  </div>",
+            "</div>",
+            "",
+            "For each number you will find its definition as a ratio of named physical quantities,",
+            "the physical interpretation of numerator and denominator, the dimensions of every",
+            "quantity involved, and — where applicable — the flow regimes the number delineates.",
+            "Each quantity links back to the numbers that use it.",
+            "",
+            "Browse by [domain](docs/domains/), explore all [numbers](docs/numbers/), or look up individual [quantities](docs/quantities/).",
+            "",
+        ],
+    )
+
+
 def write_numbers_index(numbers: list[dict[str, Any]], out_dir: Path) -> None:
     write_page(
         out_dir / "_index.md",
@@ -299,6 +342,12 @@ def main() -> None:
     dimension_order = quantities_data["dimension_order"]
     quantities = quantities_data["quantities"]
 
+    domains: dict[str, list[dict[str, Any]]] = {}
+    for number in numbers:
+        domains.setdefault(number["domain"], []).append(number)
+
+    write_home_page(numbers, quantities, domains)
+
     reset_dir(NUMBERS_OUT)
     for number in numbers:
         write_number_page(number, quantities, dimension_order, NUMBERS_OUT)
@@ -310,10 +359,6 @@ def main() -> None:
         write_quantity_page(qid, quantity, dimension_order, numbers, QUANTITIES_OUT)
     write_quantities_index(quantities, QUANTITIES_OUT)
     print(f"Generated {len(quantities)} quantity pages in {QUANTITIES_OUT}")
-
-    domains: dict[str, list[dict[str, Any]]] = {}
-    for number in numbers:
-        domains.setdefault(number["domain"], []).append(number)
 
     reset_dir(DOMAINS_OUT)
     for domain_id, domain_numbers in domains.items():
