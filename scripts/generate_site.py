@@ -13,7 +13,6 @@ QUANTITIES_JSON = ROOT / "src" / "dimless" / "data" / "quantities.json"
 HOME_OUT = ROOT / "site" / "content" / "_index.md"
 NUMBERS_OUT = ROOT / "site" / "content" / "docs" / "numbers"
 QUANTITIES_OUT = ROOT / "site" / "content" / "docs" / "quantities"
-DOMAINS_OUT = ROOT / "site" / "content" / "docs" / "domains"
 
 
 def toml_string(value: str) -> str:
@@ -171,7 +170,11 @@ def write_number_page(
     body = [
         f"# {number['name']}",
         "",
+        '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:1rem 1.5rem;margin:1rem 0;text-align:center">',
+        "",
         f"$${number['symbol']} \\stackrel{{\\text{{def}}}}{{=}} {formula} \\sim {text_frac}$$",
+        "",
+        "</div>",
         "",
         "### Quantities",
         "",
@@ -226,26 +229,28 @@ def write_home_page(
             "",
             "For each number you will find its definition as a ratio of named physical quantities,",
             "the physical interpretation of numerator and denominator, the dimensions of every",
-            "quantity involved, and — where applicable — the flow regimes the number delineates.",
+            "quantity involved, and - where applicable - the flow regimes the number delineates.",
             "Each quantity links back to the numbers that use it.",
             "",
-            "Browse by [domain](docs/domains/), explore all [numbers](docs/numbers/), or look up individual [quantities](docs/quantities/).",
+            "Explore all [numbers](docs/numbers/) or look up individual [quantities](docs/quantities/).",
             "",
         ],
     )
 
 
 def write_numbers_index(numbers: list[dict[str, Any]], out_dir: Path) -> None:
-    write_page(
-        out_dir / "_index.md",
-        ['title = "Dimensionless numbers"'],
-        [
-            "# Dimensionless numbers",
-            "",
-            *[f"- [{n['name']}]({n['id']}/)" for n in sorted(numbers, key=lambda n: n["name"])],
-            "",
-        ],
-    )
+    domains: dict[str, list[dict[str, Any]]] = {}
+    for n in numbers:
+        domains.setdefault(n["domain"], []).append(n)
+    body: list[str] = ["# Dimensionless numbers", ""]
+    for domain_id in sorted(domains):
+        body += [f"## {domain_title(domain_id)}", ""]
+        body += [
+            f"- [{n['name']}]({n['id']}/)"
+            for n in sorted(domains[domain_id], key=lambda n: n["name"])
+        ]
+        body += [""]
+    write_page(out_dir / "_index.md", ['title = "Dimensionless numbers"'], body)
 
 
 def write_quantity_page(
@@ -303,39 +308,6 @@ def write_quantities_index(quantities: dict[str, Any], out_dir: Path) -> None:
     )
 
 
-def write_domain_page(domain_id: str, numbers: list[dict[str, Any]], out_dir: Path) -> None:
-    title = domain_title(domain_id)
-    write_page(
-        out_dir / f"{domain_id}.md",
-        [
-            f"title = {toml_string(title)}",
-            'type = "domain"',
-            'layout = "domain"',
-            "bookHidden = true",
-            f"slug = {toml_string(domain_id)}",
-        ],
-        [
-            f"Dimensionless numbers in {title}.",
-            "",
-            "## Numbers",
-            "",
-            *[
-                f"- [{n['name']}](../numbers/{n['id']}/)"
-                for n in sorted(numbers, key=lambda n: n["name"])
-            ],
-            "",
-        ],
-    )
-
-
-def write_domains_index(domains: dict[str, list[dict[str, Any]]], out_dir: Path) -> None:
-    write_page(
-        out_dir / "_index.md",
-        ['title = "Domains"'],
-        ["# Domains", "", *[f"- [{domain_title(did)}]({did}/)" for did in sorted(domains)], ""],
-    )
-
-
 def main() -> None:
     numbers = json.loads(NUMBERS_JSON.read_text(encoding="utf-8"))
     quantities_data = json.loads(QUANTITIES_JSON.read_text(encoding="utf-8"))
@@ -359,12 +331,6 @@ def main() -> None:
         write_quantity_page(qid, quantity, dimension_order, numbers, QUANTITIES_OUT)
     write_quantities_index(quantities, QUANTITIES_OUT)
     print(f"Generated {len(quantities)} quantity pages in {QUANTITIES_OUT}")
-
-    reset_dir(DOMAINS_OUT)
-    for domain_id, domain_numbers in domains.items():
-        write_domain_page(domain_id, domain_numbers, DOMAINS_OUT)
-    write_domains_index(domains, DOMAINS_OUT)
-    print(f"Generated {len(domains)} domain pages in {DOMAINS_OUT}")
 
 
 if __name__ == "__main__":

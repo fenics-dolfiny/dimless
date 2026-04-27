@@ -25,7 +25,7 @@ dimensional analysis.
 
 For each number you will find its definition as a ratio of named physical quantities,
 the physical interpretation of numerator and denominator, the dimensions of every
-quantity involved, and — where applicable — the flow regimes the number delineates.
+quantity involved, and - where applicable - the flow regimes the number delineates.
 Each quantity links back to the numbers that use it.
 
-Browse by [domain](docs/domains/), explore all [numbers](docs/numbers/), or look up individual [quantities](docs/quantities/).
+Explore all [numbers](docs/numbers/) or look up individual [quantities](docs/quantities/).
