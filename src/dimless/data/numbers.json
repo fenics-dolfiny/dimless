@@ -4,19 +4,27 @@
     "name": "Euler number",
     "symbol": "\\text{Eu}",
     "aliases": [],
-    "quantities": ["pressure-difference", "density", "velocity"],
-    "exponents": [1, -1, -2],
-    "numer": "pressure gradient due to friction",
-    "denom": "inertial pressure",
+    "numer": {
+      "quantities": ["pressure-difference"],
+      "exponents": [1],
+      "label": "pressure gradient due to friction"
+    },
+    "denom": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "inertial pressure"
+    },
     "regimes": {
-      "thresholds": [0, 0.7, 0.9, 1.1, null],
-      "labels": ["high inertia", "real-world", "ideal", "friction dominant"],
-      "descriptions": [
-        "Inertial forces dominate. Pressure drop is small compared to dynamic pressure.",
-        "Typical for many engineering applications. Both inertial and frictional effects are important.",
-        "Idealized limit where inertial and frictional effects are balanced. Useful for theoretical analysis.",
-        "Frictional forces dominate. Pressure drop is large compared to dynamic pressure."
-      ]
+      "duct flow": {
+        "thresholds": [0, 0.7, 0.9, 1.1, null],
+        "labels": ["high inertia", "real-world", "ideal", "friction dominant"],
+        "descriptions": [
+          "Inertial forces dominate. Pressure drop is small compared to dynamic pressure.",
+          "Typical for many engineering applications. Both inertial and frictional effects are important.",
+          "Idealized limit where inertial and frictional effects are balanced. Useful for theoretical analysis.",
+          "Frictional forces dominate. Pressure drop is large compared to dynamic pressure."
+        ]
+      }
     },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
@@ -26,38 +34,82 @@
     "name": "Froude number",
     "symbol": "\\text{Fr}",
     "aliases": [],
-    "quantities": ["velocity", "gravitational-acceleration", "length"],
-    "exponents": [1, -0.5, -0.5],
-    "numer": "inertial effects",
-    "denom": "gravitational effects",
+    "numer": {
+      "quantities": ["velocity"],
+      "exponents": [1],
+      "label": "inertial effects"
+    },
+    "denom": {
+      "quantities": ["gravitational-acceleration", "length"],
+      "exponents": [0.5, 0.5],
+      "label": "gravitational effects"
+    },
     "regimes": {
-      "thresholds": [0, 1, null],
-      "labels": ["subcritical (tranquil)", "supercritical (rapid)"],
-      "descriptions": [
-        "Flow velocity is less than wave speed. Disturbances can propagate upstream. Common in rivers and open channels.",
-        "Flow velocity exceeds wave speed. Disturbances cannot propagate upstream. Occurs in steep channels and spillways."
-      ]
+      "open channel flow": {
+        "thresholds": [0, 1, null],
+        "labels": ["subcritical (tranquil)", "supercritical (rapid)"],
+        "descriptions": [
+          "Flow velocity is less than wave speed. Disturbances can propagate upstream. Common in rivers and open channels.",
+          "Flow velocity exceeds wave speed. Disturbances cannot propagate upstream. Occurs in steep channels and spillways."
+        ]
+      }
     },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "euler", "strouhal"]
+  },
+  {
+    "id": "nusselt",
+    "name": "Nusselt number",
+    "symbol": "\\text{Nu}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["convective-heat-transfer-coefficient", "length"],
+      "exponents": [1, 1],
+      "label": "total heat transfer"
+    },
+    "denom": {
+      "quantities": ["thermal-conductivity"],
+      "exponents": [1],
+      "label": "conductive heat transfer"
+    },
+    "regimes": {
+      "forced convection": {
+        "thresholds": [1, 2, null],
+        "labels": ["conduction dominated", "convection dominated"],
+        "descriptions": [
+          "Heat transfer is dominated by conduction. Occurs in stagnant fluids or thin boundary layers.",
+          "Heat transfer is dominated by convection. Occurs in well-mixed fluids or thick boundary layers."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": []
   },
   {
     "id": "reynolds",
     "name": "Reynolds number",
     "symbol": "\\text{Re}",
     "aliases": [],
-    "quantities": ["density", "velocity", "length", "dynamic-viscosity"],
-    "exponents": [1, 1, 1, -1],
-    "numer": "inertial effects",
-    "denom": "viscous effects",
+    "numer": {
+      "quantities": ["density", "velocity", "length"],
+      "exponents": [1, 1, 1],
+      "label": "inertial effects"
+    },
+    "denom": {
+      "quantities": ["dynamic-viscosity"],
+      "exponents": [1],
+      "label": "viscous effects"
+    },
     "regimes": {
-      "thresholds": [0, 2300, 4000, null],
-      "labels": ["laminar", "transitional", "turbulent"],
-      "descriptions": [
-        "Smooth, ordered flow. Viscous forces dominate. Velocity profile is parabolic in pipes.",
-        "",
-        "Chaotic, diffusive flow. Inertial forces dominate. Enhanced mixing and heat transfer."
-      ]
+      "pipe flow": {
+        "thresholds": [0, 2300, 4000, null],
+        "labels": ["laminar", "transitional", "turbulent"],
+        "descriptions": [
+          "Smooth, ordered flow. Viscous forces dominate. Velocity profile is parabolic in pipes.",
+          "",
+          "Chaotic, diffusive flow. Inertial forces dominate. Enhanced mixing and heat transfer."
+        ]
+      }
     },
     "domain": "fluid-mechanics",
     "see_also": ["euler", "froude", "strouhal"]
@@ -67,35 +119,128 @@
     "name": "Strouhal number",
     "symbol": "\\text{St}",
     "aliases": [],
-    "quantities": ["frequency", "length", "velocity"],
-    "exponents": [1, 1, -1],
-    "numer": "oscillation timescale",
-    "denom": "convective timescale",
+    "numer": {
+      "quantities": ["frequency", "length"],
+      "exponents": [1, 1],
+      "label": "oscillation timescale"
+    },
+    "denom": {
+      "quantities": ["velocity"],
+      "exponents": [1],
+      "label": "convective timescale"
+    },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
   },
   {
-    "id": "nusselt",
-    "name": "Nusselt number",
-    "symbol": "\\text{Nu}",
+    "id": "weber",
+    "name": "Weber number",
+    "symbol": "\\text{We}",
     "aliases": [],
-    "quantities": [
-      "convective-heat-transfer-coefficient",
-      "length",
-      "thermal-conductivity"
-    ],
-    "exponents": [1, 1, -1],
-    "numer": "total heat transfer",
-    "denom": "conductive heat transfer",
+    "numer": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "inertial pressure"
+    },
+    "denom": {
+      "quantities": ["surface-tension", "length"],
+      "exponents": [1, -1],
+      "label": "capillary pressure"
+    },
     "regimes": {
-      "thresholds": [1, 2, null],
-      "labels": ["conduction dominated", "convection dominated"],
-      "descriptions": [
-        "Heat transfer is dominated by conduction. Occurs in stagnant fluids or thin boundary layers.",
-        "Heat transfer is dominated by convection. Occurs in well-mixed fluids or thick boundary layers."
-      ]
+      "liquid jet breakup": {
+        "thresholds": [0, 8, 40, 350, null],
+        "labels": [
+          "Rayleigh",
+          "first wind-induced",
+          "second wind-induced",
+          "atomization"
+        ],
+        "descriptions": [
+          "Surface tension drives axisymmetric capillary instability. Jet breaks into droplets larger than the jet diameter at a distance far downstream.",
+          "Aerodynamic forces enhance Rayleigh instability. Droplets form near the jet diameter; breakup length begins to decrease.",
+          "Short-wavelength surface waves stripped by aerodynamic pressure produce droplets smaller than the jet diameter.",
+          "Jet disintegrates immediately at the nozzle exit into a dense spray of very fine droplets. Dominant in fuel injectors."
+        ]
+      },
+      "secondary droplet breakup": {
+        "thresholds": [0, 12, 50, 100, 350, null],
+        "labels": [
+          "vibrational",
+          "bag",
+          "multimode",
+          "sheet stripping",
+          "catastrophic"
+        ],
+        "descriptions": [
+          "Droplet oscillates but remains intact. Breakup is marginal and occurs only after many oscillation cycles.",
+          "Droplet deforms into a thin bag inflated by the flow, which ruptures into fine droplets with a coarser rim fragment.",
+          "Combined bag and stamen breakup. A liquid stamen forms inside the bag, producing a bimodal fragment size distribution.",
+          "Liquid is continuously stripped from the droplet equator as thin sheets, forming many small satellite droplets.",
+          "Droplet shatters almost instantaneously into a cloud of fine fragments. Relevant to high-speed impacts and sprays."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": []
+  },
+  {
+    "id": "prandtl",
+    "name": "Prandtl number",
+    "symbol": "\\text{Pr}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["dynamic-viscosity", "density"],
+      "exponents": [1, -1],
+      "label": "momentum diffusivity"
+    },
+    "denom": {
+      "quantities": [
+        "thermal-conductivity",
+        "density",
+        "convective-heat-transfer-coefficient"
+      ],
+      "exponents": [1, -1, -1],
+      "label": "thermal diffusivity"
     },
     "domain": "heat-transfer",
+    "see_also": []
+  },
+  {
+    "id": "mach",
+    "name": "Mach number",
+    "symbol": "\\text{Ma}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["velocity"],
+      "exponents": [1],
+      "label": "flow velocity"
+    },
+    "denom": {
+      "quantities": ["speed-of-sound"],
+      "exponents": [1],
+      "label": "speed of sound"
+    },
+    "regimes": {
+      "compressible flow": {
+        "thresholds": [0, 0.3, 0.8, 1.2, 5.0, null],
+        "labels": [
+          "incompressible",
+          "weakly compressible",
+          "transonic",
+          "supersonic",
+          "hypersonic"
+        ],
+        "descriptions": [
+          "Density variations are negligible. Flow can be treated as incompressible.",
+          "Compressibility effects are small but may be noticeable in some cases.",
+          "Flow speed approaches the speed of sound. Shock waves and strong compressibility effects occur.",
+          "Flow speed exceeds the speed of sound. Strong shock waves and compressibility effects dominate.",
+          "Flow speed is much greater than the speed of sound. Extreme shock waves, high temperatures, and ionization may occur."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
     "see_also": []
   }
 ]

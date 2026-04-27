@@ -53,6 +53,16 @@
       "name": "thermal conductivity",
       "symbol": "k",
       "dimension": [0, 0, 1, 0, 1, -1, -3]
+    },
+    "surface-tension": {
+      "name": "surface tension",
+      "symbol": "\\sigma",
+      "dimension": [0, 0, 0, 0, 1, 0, -2]
+    },
+    "speed-of-sound": {
+      "name": "speed of sound",
+      "symbol": "c",
+      "dimension": [0, 0, 1, 0, 0, 0, -1]
     }
   }
 }

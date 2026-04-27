@@ -44,10 +44,24 @@ def dim_str(dimension: list[int], dimension_order: list[str]) -> str:
     return r"\,".join(parts) if parts else "1"
 
 
+def regime_ranges(regime: dict[str, Any]) -> list[str]:
+    raw = regime["thresholds"]
+    labels = regime["labels"]
+    lo_endpoint, hi_endpoint = raw[0], raw[-1]
+    thresholds = [(t, t) if isinstance(t, (int, float)) else (t[0], t[1]) for t in raw[1:-1]]
+    result = []
+    for i in range(len(labels)):
+        seg_lo = lo_endpoint if i == 0 else thresholds[i - 1][1]
+        seg_hi = hi_endpoint if i == len(labels) - 1 else thresholds[i][0]
+        lo_str = f"{seg_lo:g}" if seg_lo != 0 else "0"
+        hi_str = "∞" if seg_hi is None else f"{seg_hi:g}"
+        result.append(f"{lo_str} – {hi_str}")
+    return result
+
+
 def regime_svg(regimes: dict[str, Any]) -> str:
     raw = regimes["thresholds"]
     labels = regimes["labels"]
-    descriptions = regimes.get("descriptions", [])
     colors = ["#dbeafe", "#d1fae5", "#fef9c3", "#fed7aa", "#fca5a5", "#f9a8d4"]
 
     # Format: [lo, t1, t2, ..., hi]  where lo=0 means "from zero", hi=null means "to infinity"
@@ -65,9 +79,8 @@ def regime_svg(regimes: dict[str, Any]) -> str:
             / (math.log10(display_hi) - math.log10(display_lo))
         )
 
-    TW = 240
     defs = [
-        "<style>.regime .desc{visibility:hidden}.regime:hover .desc{visibility:visible}.regime:hover .bar{filter:brightness(0.85)}</style>"
+        "<style>.regime:hover .bar{filter:brightness(0.85)}</style>"
     ]
     rows = []
 
@@ -76,24 +89,11 @@ def regime_svg(regimes: dict[str, Any]) -> str:
         seg_hi = display_hi if i == len(labels) - 1 else thresholds[i][0]
         x0, x1 = x(seg_lo), x(seg_hi)
         w, cx = x1 - x0, (x0 + x1) / 2
-        desc = descriptions[i] if i < len(descriptions) else ""
-        fo_x = max(0, min(W - TW, cx - TW / 2))
-        fo = (
-            (
-                f'<foreignObject class="desc" x="{fo_x:.0f}" y="62" width="{TW}" height="100">'
-                f'<div xmlns="http://www.w3.org/1999/xhtml" style="background:white;border:1px solid #e2e8f0;'
-                f'border-radius:4px;padding:6px 8px;font-size:11px;color:#475569;text-align:center">'
-                f"{desc}</div></foreignObject>"
-            )
-            if desc
-            else ""
-        )
         rows.append(
             f'<g class="regime">'
-            f'<rect x="{x0:.0f}" y="0" width="{w:.0f}" height="42" fill="transparent"/>'
             f'<text x="{cx:.0f}" y="14" text-anchor="middle" font-size="12" fill="#1e293b">{label}</text>'
             f'<rect class="bar" x="{x0:.0f}" y="20" width="{w:.0f}" height="20" fill="{colors[i % len(colors)]}"/>'
-            f"{fo}</g>"
+            f"</g>"
         )
 
     rows.append(
@@ -134,7 +134,7 @@ def regime_svg(regimes: dict[str, Any]) -> str:
     )
 
 
-def latex_fraction(quantity_ids: list[str], exponents: list[int], symbols: dict[str, str]) -> str:
+def latex_fraction(numer: dict[str, Any], denom: dict[str, Any], symbols: dict[str, str]) -> str:
     def fmt_exp(a: float) -> str:
         return str(int(a)) if a == int(a) else str(a)
 
@@ -147,26 +147,34 @@ def latex_fraction(quantity_ids: list[str], exponents: list[int], symbols: dict[
         inner = f"({body})" if len(syms) > 1 else body
         return f"{inner}^{{{fmt_exp(a)}}}"
 
-    def fmt_side(pairs: list[tuple[str, float]]) -> str:
-        groups: dict[float, list[str]] = {}
-        for q, a in sorted(pairs, key=lambda x: -x[1]):
-            groups.setdefault(a, []).append(symbols[q])
-        return " ".join(fmt_group(syms, a) for a, syms in groups.items())
+    def fmt_side(quantities: list[str], exponents: list[float]) -> str:
+        pos: dict[float, list[str]] = {}
+        neg: list[tuple[float, str]] = []
+        for q, e in zip(quantities, exponents):
+            if e > 0:
+                pos.setdefault(e, []).append(symbols[q])
+            else:
+                neg.append((abs(e), symbols[q]))
+        n = " ".join(fmt_group(syms, e) for e, syms in sorted(pos.items(), reverse=True)) or "1"
+        if not neg:
+            return n
+        return "/".join([n] + [fmt_group([sym], e) for e, sym in neg])
 
-    pos = [(q, e) for q, e in zip(quantity_ids, exponents) if e > 0]
-    neg = [(q, abs(e)) for q, e in zip(quantity_ids, exponents) if e < 0]
-    numer = fmt_side(pos) if pos else "1"
-    if not neg:
-        return numer
-    return f"\\frac{{{numer}}}{{{fmt_side(neg)}}}"
+    n = fmt_side(numer["quantities"], numer["exponents"])
+    if not denom["quantities"]:
+        return n
+    d = fmt_side(denom["quantities"], denom["exponents"])
+    return f"\\frac{{{n}}}{{{d}}}"
 
 
 def write_number_page(
     number: dict[str, Any], quantities: dict[str, Any], dimension_order: list[str], out_dir: Path
 ) -> None:
     quantity_symbols = {qid: q["symbol"] for qid, q in quantities.items()}
-    formula = latex_fraction(number["quantities"], number["exponents"], quantity_symbols)
-    text_frac = f"\\frac{{\\text{{{number['numer']}}}}}{{\\text{{{number['denom']}}}}}"
+    numer, denom = number["numer"], number["denom"]
+    formula = latex_fraction(numer, denom, quantity_symbols)
+    text_frac = f"\\frac{{\\text{{{numer['label']}}}}}{{\\text{{{denom['label']}}}}}"
+    all_quantities = list(dict.fromkeys(numer["quantities"] + denom["quantities"]))
     body = [
         f"# {number['name']}",
         "",
@@ -182,12 +190,23 @@ def write_number_page(
         "|------|--------|-----------|",
         *[
             f"| {quantities[q]['name']} | \\({quantities[q]['symbol']}\\) | \\({dim_str(quantities[q]['dimension'], dimension_order)}\\) |"
-            for q in number["quantities"]
+            for q in all_quantities
         ],
         "",
     ]
     if regimes := number.get("regimes"):
-        body += ["### Regimes", "", regime_svg(regimes), ""]
+        body += ["### Regimes", ""]
+        for name, regime_data in regimes.items():
+            body += [f"**{name.capitalize()}**", "", regime_svg(regime_data), ""]
+            descs = regime_data.get("descriptions", [])
+            ranges = regime_ranges(regime_data)
+            desc_lines = [
+                f"- **{label}** ({rng}): {desc}"
+                for label, rng, desc in zip(regime_data["labels"], ranges, descs)
+                if desc
+            ]
+            if desc_lines:
+                body += desc_lines + [""]
     body += ["&nbsp;", "&nbsp;"]
     write_page(
         out_dir / f"{number['id']}.md",
@@ -274,7 +293,9 @@ def write_quantity_page(
         ],
         "",
     ]
-    used_in = [n for n in numbers if qid in n["quantities"]]
+    used_in = [
+        n for n in numbers if qid in n["numer"]["quantities"] or qid in n["denom"]["quantities"]
+    ]
     if used_in:
         body += [
             "## Used in",
