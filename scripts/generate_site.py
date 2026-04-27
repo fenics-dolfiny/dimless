@@ -20,18 +20,6 @@ def toml_string(value: str) -> str:
     return f'"{escaped}"'
 
 
-def toml_value(value: Any) -> str:
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    if isinstance(value, str):
-        return toml_string(value)
-    if isinstance(value, int | float):
-        return repr(value)
-    if isinstance(value, list):
-        return "[" + ", ".join(toml_value(v) for v in value) + "]"
-    raise TypeError(f"Unsupported TOML value type: {type(value)!r}")
-
-
 def domain_title(domain_id: str) -> str:
     return domain_id.replace("-", " ").capitalize()
 
@@ -40,6 +28,11 @@ def reset_dir(path: Path) -> None:
     if path.exists():
         shutil.rmtree(path)
     path.mkdir(parents=True)
+
+
+def write_page(path: Path, frontmatter: list[str], body: list[str]) -> None:
+    lines = ["+++", *frontmatter, "+++", "", *body]
+    path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
 def dim_str(dimension: list[int], dimension_order: list[str]) -> str:
@@ -58,8 +51,7 @@ def regime_svg(regimes: dict[str, Any]) -> str:
     colors = ["#dbeafe", "#d1fae5", "#fef9c3", "#fed7aa", "#fca5a5", "#f9a8d4"]
 
     # Format: [lo, t1, t2, ..., hi]  where lo=0 means "from zero", hi=null means "to infinity"
-    lo_endpoint = raw[0]
-    hi_endpoint = raw[-1]
+    lo_endpoint, hi_endpoint = raw[0], raw[-1]
     thresholds = [(t, t) if isinstance(t, (int, float)) else (t[0], t[1]) for t in raw[1:-1]]
 
     W = 800
@@ -75,11 +67,7 @@ def regime_svg(regimes: dict[str, Any]) -> str:
 
     TW = 240
     defs = [
-        "<style>"
-        ".regime .desc{visibility:hidden}"
-        ".regime:hover .desc{visibility:visible}"
-        ".regime:hover .bar{filter:brightness(0.85)}"
-        "</style>"
+        "<style>.regime .desc{visibility:hidden}.regime:hover .desc{visibility:visible}.regime:hover .bar{filter:brightness(0.85)}</style>"
     ]
     rows = []
 
@@ -108,9 +96,8 @@ def regime_svg(regimes: dict[str, Any]) -> str:
             f"{fo}</g>"
         )
 
-    lo_label = f"{lo_endpoint:g}"
     rows.append(
-        f'<text x="0" y="54" text-anchor="middle" font-size="10" fill="#475569">{lo_label}</text>'
+        f'<text x="0" y="54" text-anchor="middle" font-size="10" fill="#475569">{lo_endpoint:g}</text>'
     )
     if hi_endpoint is None:
         rows.append(
@@ -168,14 +155,10 @@ def latex_fraction(quantity_ids: list[str], exponents: list[int], symbols: dict[
 
     pos = [(q, e) for q, e in zip(quantity_ids, exponents) if e > 0]
     neg = [(q, abs(e)) for q, e in zip(quantity_ids, exponents) if e < 0]
-
     numer = fmt_side(pos) if pos else "1"
     if not neg:
         return numer
     return f"\\frac{{{numer}}}{{{fmt_side(neg)}}}"
-
-
-# --- numbers ---
 
 
 def write_number_page(
@@ -184,8 +167,7 @@ def write_number_page(
     quantity_symbols = {qid: q["symbol"] for qid, q in quantities.items()}
     formula = latex_fraction(number["quantities"], number["exponents"], quantity_symbols)
     text_frac = f"\\frac{{\\text{{{number['numer']}}}}}{{\\text{{{number['denom']}}}}}"
-    body: list[str] = []
-    body += [
+    body = [
         f"# {number['name']}",
         "",
         f"$${number['symbol']} \\stackrel{{\\text{{def}}}}{{=}} {formula} \\sim {text_frac}$$",
@@ -202,44 +184,25 @@ def write_number_page(
     ]
     if regimes := number.get("regimes"):
         body += ["### Regimes", "", regime_svg(regimes), ""]
-
     body += ["&nbsp;", "&nbsp;"]
-
-    (out_dir / f"{number['id']}.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                f"title = {toml_string(number['name'])}",
-                "bookHidden = true",
-                "+++",
-                "",
-                "\n".join(body).rstrip(),
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / f"{number['id']}.md",
+        [f"title = {toml_string(number['name'])}", "bookHidden = true"],
+        body,
     )
 
 
 def write_numbers_index(numbers: list[dict[str, Any]], out_dir: Path) -> None:
-    (out_dir / "_index.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                'title = "Dimensionless numbers"',
-                "+++",
-                "",
-                "# Dimensionless numbers",
-                "",
-                *[f"- [{n['name']}]({n['id']}/)" for n in sorted(numbers, key=lambda n: n["name"])],
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / "_index.md",
+        ['title = "Dimensionless numbers"'],
+        [
+            "# Dimensionless numbers",
+            "",
+            *[f"- [{n['name']}]({n['id']}/)" for n in sorted(numbers, key=lambda n: n["name"])],
+            "",
+        ],
     )
-
-
-# --- quantities ---
 
 
 def write_quantity_page(
@@ -249,7 +212,7 @@ def write_quantity_page(
     numbers: list[dict[str, Any]],
     out_dir: Path,
 ) -> None:
-    body: list[str] = [
+    body = [
         "## Definition",
         "",
         f"- **Symbol:** {quantity['symbol']}",
@@ -274,94 +237,60 @@ def write_quantity_page(
             ],
             "",
         ]
-
-    (out_dir / f"{qid}.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                f"title = {toml_string(quantity['name'])}",
-                "bookHidden = true",
-                "+++",
-                "",
-                "\n".join(body).rstrip(),
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / f"{qid}.md",
+        [f"title = {toml_string(quantity['name'])}", "bookHidden = true"],
+        body,
     )
 
 
 def write_quantities_index(quantities: dict[str, Any], out_dir: Path) -> None:
-    (out_dir / "_index.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                'title = "Quantities"',
-                "+++",
-                "",
-                "# Quantities",
-                "",
-                *[
-                    f"- [{q['name']}]({qid}/)"
-                    for qid, q in sorted(quantities.items(), key=lambda item: item[1]["name"])
-                ],
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / "_index.md",
+        ['title = "Quantities"'],
+        [
+            "# Quantities",
+            "",
+            *[
+                f"- [{q['name']}]({qid}/)"
+                for qid, q in sorted(quantities.items(), key=lambda item: item[1]["name"])
+            ],
+            "",
+        ],
     )
-
-
-# --- domains ---
 
 
 def write_domain_page(domain_id: str, numbers: list[dict[str, Any]], out_dir: Path) -> None:
     title = domain_title(domain_id)
-    (out_dir / f"{domain_id}.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                f"title = {toml_string(title)}",
-                'type = "domain"',
-                'layout = "domain"',
-                "bookHidden = true",
-                f"slug = {toml_string(domain_id)}",
-                "+++",
-                "",
-                f"Dimensionless numbers in {title}.",
-                "",
-                "## Numbers",
-                "",
-                *[
-                    f"- [{n['name']}](../numbers/{n['id']}/)"
-                    for n in sorted(numbers, key=lambda n: n["name"])
-                ],
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / f"{domain_id}.md",
+        [
+            f"title = {toml_string(title)}",
+            'type = "domain"',
+            'layout = "domain"',
+            "bookHidden = true",
+            f"slug = {toml_string(domain_id)}",
+        ],
+        [
+            f"Dimensionless numbers in {title}.",
+            "",
+            "## Numbers",
+            "",
+            *[
+                f"- [{n['name']}](../numbers/{n['id']}/)"
+                for n in sorted(numbers, key=lambda n: n["name"])
+            ],
+            "",
+        ],
     )
 
 
 def write_domains_index(domains: dict[str, list[dict[str, Any]]], out_dir: Path) -> None:
-    (out_dir / "_index.md").write_text(
-        "\n".join(
-            [
-                "+++",
-                'title = "Domains"',
-                "+++",
-                "",
-                "# Domains",
-                "",
-                *[f"- [{domain_title(did)}]({did}/)" for did in sorted(domains)],
-                "",
-            ]
-        ),
-        encoding="utf-8",
+    write_page(
+        out_dir / "_index.md",
+        ['title = "Domains"'],
+        ["# Domains", "", *[f"- [{domain_title(did)}]({did}/)" for did in sorted(domains)], ""],
     )
-
-
-# --- main ---
 
 
 def main() -> None:
