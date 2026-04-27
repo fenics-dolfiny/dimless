@@ -9,6 +9,8 @@ pages:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
     GIT_SUBMODULE_DEPTH: 1
+  before_script:
+    - apt-get update && apt-get install -y python3
   script:
     - python3 scripts/generate_site.py
     - cd site
