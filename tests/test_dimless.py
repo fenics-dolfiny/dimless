@@ -5,7 +5,7 @@ import dimless
 def test_number_reynolds():
     r = dimless.number("reynolds")
     assert r["id"] == "reynolds"
-    assert r["symbol"] == "Re"
+    assert r["symbol"] == r"\text{Re}"
 
 
 def test_number_missing():
