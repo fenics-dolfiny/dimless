@@ -271,5 +271,34 @@
     },
     "domain": "mass-transfer",
     "see_also": []
+  },
+  {
+    "id": "biot",
+    "name": "Biot number",
+    "symbol": "\\text{Bi}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["convective-heat-transfer-coefficient", "length"],
+      "exponents": [1, 1],
+      "label": "internal thermal resistance"
+    },
+    "denom": {
+      "quantities": ["thermal-conductivity"],
+      "exponents": [1],
+      "label": "conductive (surface) thermal resistance"
+    },
+    "regimes": {
+      "heat conduction in solids": {
+        "thresholds": [0, 0.1, 40, null],
+        "labels": ["thermally thin", "thermally thick", "surface control"],
+        "descriptions": [
+          "Temperature gradients within the solid are negligible. Surface temperature is uniform. Lumped capacitance model applies.",
+          "Significant temperature gradients exist within the solid. Internal conduction resistance is important. Requires solving the heat equation.",
+          "Thermal resistance is dominated by surface convection. Internal conduction is very efficient."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": []
   }
 ]
