@@ -63,6 +63,11 @@
       "name": "speed of sound",
       "symbol": "c",
       "dimension": [0, 0, 1, 0, 0, 0, -1]
+    },
+    "diffusivity": {
+      "name": "diffusivity",
+      "symbol": "D",
+      "dimension": [0, 0, 2, 0, 0, 0, -1]
     }
   }
 }

@@ -242,5 +242,34 @@
     },
     "domain": "fluid-mechanics",
     "see_also": []
+  },
+  {
+    "id": "schmidt",
+    "name": "Schmidt number",
+    "symbol": "\\text{Sc}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["dynamic-viscosity", "density"],
+      "exponents": [1, -1],
+      "label": "momentum diffusivity"
+    },
+    "denom": {
+      "quantities": ["diffusivity"],
+      "exponents": [1],
+      "label": "mass diffusivity"
+    },
+    "regimes": {
+      "molecular diffusion": {
+        "thresholds": [0, 0.2, 4, null],
+        "labels": ["liquid metal", "gas", "liquid"],
+        "descriptions": [
+          "Mass diffusivity dominates over momentum diffusivity. Occurs in liquid metals and dilute gases.",
+          "Momentum and mass diffusivities are comparable. Common in many gases.",
+          "Typical for liquids, e.g. 600 - 700 for water."
+        ]
+      }
+    },
+    "domain": "mass-transfer",
+    "see_also": []
   }
 ]

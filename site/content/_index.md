@@ -17,9 +17,9 @@ dimensional analysis.
 
 <div style="display:flex;justify-content:center;margin:1.5rem 0">
   <div style="display:inline-flex;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;text-align:center">
-    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">8</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">numbers</div></div>
-    <div style="padding:1rem 2.5rem;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0"><div style="font-size:2rem;font-weight:700;color:#1e293b">11</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">quantities</div></div>
-    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">2</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">domains</div></div>
+    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">9</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">numbers</div></div>
+    <div style="padding:1rem 2.5rem;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0"><div style="font-size:2rem;font-weight:700;color:#1e293b">12</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">quantities</div></div>
+    <div style="padding:1rem 2.5rem"><div style="font-size:2rem;font-weight:700;color:#1e293b">3</div><div style="font-size:0.8rem;color:#64748b;margin-top:0.2rem">domains</div></div>
   </div>
 </div>
 
