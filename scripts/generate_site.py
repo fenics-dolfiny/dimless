@@ -32,6 +32,7 @@ def reset_dir(path: Path) -> None:
 
 def write_page(path: Path, frontmatter: list[str], body: list[str]) -> None:
     lines = ["+++", *frontmatter, "+++", "", *body]
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
