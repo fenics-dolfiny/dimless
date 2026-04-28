@@ -65,7 +65,7 @@
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "total heat transfer"
+      "label": "convective (total) heat transfer"
     },
     "denom": {
       "quantities": ["thermal-conductivity"],
@@ -280,17 +280,21 @@
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "internal thermal resistance"
+      "label": "convective (surface) heat transfer"
     },
     "denom": {
       "quantities": ["thermal-conductivity"],
       "exponents": [1],
-      "label": "conductive (surface) thermal resistance"
+      "label": "conductive heat transfer"
     },
     "regimes": {
       "heat conduction in solids": {
         "thresholds": [0, 0.1, 40, null],
-        "labels": ["thermally thin", "thermally thick", "surface control"],
+        "labels": [
+          "uniform temperature",
+          "temperature gradients",
+          "surface control"
+        ],
         "descriptions": [
           "Temperature gradients within the solid are negligible. Surface temperature is uniform. Lumped capacitance model applies.",
           "Significant temperature gradients exist within the solid. Internal conduction resistance is important. Requires solving the heat equation.",
