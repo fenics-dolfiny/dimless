@@ -68,6 +68,21 @@
       "name": "diffusivity",
       "symbol": "D",
       "dimension": [0, 0, 2, 0, 0, 0, -1]
+    },
+    "mass-transfer-coefficient": {
+      "name": "mass transfer coefficient",
+      "symbol": "k_m",
+      "dimension": [0, 0, 1, 0, 0, 0, -1]
+    },
+    "thermal-diffusivity": {
+      "name": "thermal diffusivity",
+      "symbol": "\\alpha",
+      "dimension": [0, 0, 2, 0, 0, 0, -1]
+    },
+    "time": {
+      "name": "time",
+      "symbol": "t",
+      "dimension": [0, 0, 0, 0, 0, 0, 1]
     }
   }
 }

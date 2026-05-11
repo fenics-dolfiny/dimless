@@ -273,6 +273,119 @@
     "see_also": []
   },
   {
+    "id": "sherwood",
+    "name": "Sherwood number",
+    "symbol": "\\text{Sh}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["mass-transfer-coefficient", "length"],
+      "exponents": [1, 1],
+      "label": "convective mass transfer"
+    },
+    "denom": {
+      "quantities": ["diffusivity"],
+      "exponents": [1],
+      "label": "diffusive mass transfer"
+    },
+    "regimes": {
+      "mass transfer": {
+        "thresholds": [0, 1, null],
+        "labels": ["diffusion dominated", "convection enhanced"],
+        "descriptions": [
+          "Mass transfer is dominated by molecular diffusion. Sh ≈ 1 corresponds to the purely diffusive limit.",
+          "Convection significantly enhances mass transfer above the purely diffusive rate."
+        ]
+      }
+    },
+    "domain": "mass-transfer",
+    "see_also": ["nusselt", "schmidt", "reynolds"]
+  },
+  {
+    "id": "peclet",
+    "name": "Péclet number",
+    "symbol": "\\text{Pe}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["velocity", "length"],
+      "exponents": [1, 1],
+      "label": "advective heat transport"
+    },
+    "denom": {
+      "quantities": ["thermal-diffusivity"],
+      "exponents": [1],
+      "label": "diffusive heat transport"
+    },
+    "regimes": {
+      "heat transfer": {
+        "thresholds": [0, 1, null],
+        "labels": ["diffusion dominated", "advection dominated"],
+        "descriptions": [
+          "Thermal diffusion dominates. Temperature gradients are smoothed quickly relative to the flow timescale.",
+          "Advection dominates heat transport. Thermal boundary layers are thin and temperature variations are convected downstream."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["reynolds", "prandtl", "nusselt"]
+  },
+  {
+    "id": "fourier",
+    "name": "Fourier number",
+    "symbol": "\\text{Fo}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["thermal-diffusivity", "time"],
+      "exponents": [1, 1],
+      "label": "thermal diffusion area"
+    },
+    "denom": {
+      "quantities": ["length"],
+      "exponents": [2],
+      "label": "domain cross-section area"
+    },
+    "regimes": {
+      "transient heat conduction": {
+        "thresholds": [0, 0.2, null],
+        "labels": ["early transient", "late transient"],
+        "descriptions": [
+          "Significant temperature gradients persist throughout the domain. The thermal front has not yet penetrated the full depth.",
+          "Temperature gradients are diminishing. The body approaches thermal equilibrium with its surroundings."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["biot", "nusselt"]
+  },
+  {
+    "id": "capillary",
+    "name": "Capillary number",
+    "symbol": "\\text{Ca}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["dynamic-viscosity", "velocity"],
+      "exponents": [1, 1],
+      "label": "viscous drag force per unit length"
+    },
+    "denom": {
+      "quantities": ["surface-tension"],
+      "exponents": [1],
+      "label": "surface tension force per unit length"
+    },
+    "regimes": {
+      "multiphase flow": {
+        "thresholds": [0, 0.001, 1, null],
+        "labels": ["capillary dominated", "transitional", "viscous dominated"],
+        "descriptions": [
+          "Surface tension forces dominate. Droplets and bubbles maintain compact, nearly spherical shapes.",
+          "Both surface tension and viscous forces are significant. Interfaces are noticeably deformed.",
+          "Viscous forces dominate. Interfaces deform freely and droplets may be highly elongated or broken up."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["weber", "reynolds"]
+  },
+  {
     "id": "biot",
     "name": "Biot number",
     "symbol": "\\text{Bi}",
