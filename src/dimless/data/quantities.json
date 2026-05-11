@@ -12,77 +12,92 @@
     "density": {
       "name": "mass density",
       "symbol": "\\rho",
-      "dimension": [0, 0, -3, 0, 1, 0, 0]
+      "dimension": [0, 0, -3, 0, 1, 0, 0],
+      "description": "Mass per unit volume of a substance. A fundamental thermodynamic property that depends on temperature and pressure; its spatial variation underpins buoyancy-driven flows and stratification."
     },
     "velocity": {
       "name": "velocity",
       "symbol": "U",
-      "dimension": [0, 0, 1, 0, 0, 0, -1]
+      "dimension": [0, 0, 1, 0, 0, 0, -1],
+      "description": "Rate of displacement of a fluid element or body. In dimensionless analysis it typically represents a characteristic (bulk, free-stream, or mean) speed that sets the advective time scale."
     },
     "length": {
       "name": "characteristic length",
       "symbol": "L",
-      "dimension": [0, 0, 1, 0, 0, 0, 0]
+      "dimension": [0, 0, 1, 0, 0, 0, 0],
+      "description": "A geometric scale representative of the problem: pipe diameter, boundary-layer thickness, chord length, or droplet radius. Its choice determines which physical effects are captured by a given dimensionless group."
     },
     "dynamic-viscosity": {
       "name": "dynamic viscosity",
       "symbol": "\\mu",
-      "dimension": [0, 0, -1, 0, 1, 0, -1]
+      "dimension": [0, 0, -1, 0, 1, 0, -1],
+      "description": "Resistance of a fluid to shear deformation. In a Newtonian fluid it relates shear stress linearly to the velocity gradient. It decreases with temperature for liquids and increases for gases."
     },
     "pressure-difference": {
       "name": "pressure difference",
       "symbol": "\\Delta p",
-      "dimension": [0, 0, -1, 0, 1, 0, -2]
+      "dimension": [0, 0, -1, 0, 1, 0, -2],
+      "description": "Difference in static pressure between two points in a flow field. Acts as the driving force for fluid motion in closed conduits and quantifies energy losses due to friction and changes in geometry."
     },
     "frequency": {
       "name": "frequency",
       "symbol": "f",
-      "dimension": [0, 0, 0, 0, 0, 0, -1]
+      "dimension": [0, 0, 0, 0, 0, 0, -1],
+      "description": "Number of complete oscillation cycles per unit time. In fluid mechanics it characterises periodic phenomena such as vortex shedding, acoustic resonance, or externally imposed oscillations."
     },
     "gravitational-acceleration": {
       "name": "gravitational acceleration",
       "symbol": "g",
-      "dimension": [0, 0, 1, 0, 0, 0, -2]
+      "dimension": [0, 0, 1, 0, 0, 0, -2],
+      "description": "Acceleration imparted by gravity at the Earth's surface (~9.81 m/s²). Sets the restoring force for surface waves and drives buoyancy-induced flows wherever density gradients are present."
     },
     "convective-heat-transfer-coefficient": {
       "name": "convective heat transfer coefficient",
       "symbol": "h",
-      "dimension": [0, 0, 0, 0, 1, -1, -3]
+      "dimension": [0, 0, 0, 0, 1, -1, -3],
+      "description": "Rate of convective heat transfer per unit surface area per unit temperature difference between a surface and the adjacent fluid. Encapsulates geometry, flow conditions, and fluid properties into a single engineering quantity."
     },
     "thermal-conductivity": {
       "name": "thermal conductivity",
       "symbol": "k",
-      "dimension": [0, 0, 1, 0, 1, -1, -3]
+      "dimension": [0, 0, 1, 0, 1, -1, -3],
+      "description": "Intrinsic ability of a material to transfer heat by conduction. Relates the conductive heat flux to the local temperature gradient via Fourier's law; generally weakly temperature-dependent for solids, but strongly so for gases and liquids."
     },
     "surface-tension": {
       "name": "surface tension",
       "symbol": "\\sigma",
-      "dimension": [0, 0, 0, 0, 1, 0, -2]
+      "dimension": [0, 0, 0, 0, 1, 0, -2],
+      "description": "Energy per unit interfacial area (equivalently, force per unit contact-line length) arising from the imbalance of intermolecular cohesive forces at a phase boundary. Drives capillary rise, droplet formation, and interface stabilisation."
     },
     "speed-of-sound": {
       "name": "speed of sound",
       "symbol": "c",
-      "dimension": [0, 0, 1, 0, 0, 0, -1]
+      "dimension": [0, 0, 1, 0, 0, 0, -1],
+      "description": "Phase speed of small-amplitude compressional waves in a medium. Determined by the ratio of the isentropic bulk modulus to density; sets the compressibility scale and serves as the reference speed in the Mach number."
     },
     "diffusivity": {
       "name": "diffusivity",
       "symbol": "D",
-      "dimension": [0, 0, 2, 0, 0, 0, -1]
+      "dimension": [0, 0, 2, 0, 0, 0, -1],
+      "description": "Proportionality constant in Fick's first law, relating the diffusive mass flux of a species to its concentration gradient. Depends strongly on temperature, pressure, and the solute–solvent pair."
     },
     "mass-transfer-coefficient": {
       "name": "mass transfer coefficient",
       "symbol": "k_m",
-      "dimension": [0, 0, 1, 0, 0, 0, -1]
+      "dimension": [0, 0, 1, 0, 0, 0, -1],
+      "description": "Convective mass-transfer analogue of the heat-transfer coefficient. Relates the convective species flux to the concentration difference between an interface and the bulk fluid; depends on geometry, flow conditions, and diffusivity."
     },
     "thermal-diffusivity": {
       "name": "thermal diffusivity",
       "symbol": "\\alpha",
-      "dimension": [0, 0, 2, 0, 0, 0, -1]
+      "dimension": [0, 0, 2, 0, 0, 0, -1],
+      "description": "Ratio of thermal conductivity to volumetric heat capacity; governs the rate at which temperature disturbances propagate through a material. A high value indicates rapid thermal equilibration relative to heat storage."
     },
     "time": {
       "name": "time",
       "symbol": "t",
-      "dimension": [0, 0, 0, 0, 0, 0, 1]
+      "dimension": [0, 0, 0, 0, 0, 0, 1],
+      "description": "Elapsed time, used as the independent variable in transient analyses. Sets the temporal scale against which diffusion, convection, or oscillation rates are compared in unsteady dimensionless groups."
     }
   }
 }

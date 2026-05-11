@@ -278,26 +278,25 @@ def write_quantity_page(
     numbers: list[dict[str, Any]],
     out_dir: Path,
 ) -> None:
+    dim = dim_str(quantity["dimension"], dimension_order)
     body = [
-        "## Definition",
+        f"# {quantity['name']}",
         "",
-        f"- **Symbol:** {quantity['symbol']}",
+        '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:1rem 1.5rem;margin:1rem 0;text-align:center">',
         "",
-        "## Dimensions",
+        f"$${quantity['symbol']} \\sim {dim}$$",
         "",
-        *[
-            f"- `{dim}`: exponent `{exp}`"
-            for dim, exp in zip(dimension_order, quantity["dimension"])
-            if exp != 0
-        ],
+        "</div>",
         "",
     ]
+    if description := quantity.get("description"):
+        body += [description, ""]
     used_in = [
         n for n in numbers if qid in n["numer"]["quantities"] or qid in n["denom"]["quantities"]
     ]
     if used_in:
         body += [
-            "## Used in",
+            "### Used in",
             "",
             *[
                 f"- [{n['name']}](../numbers/{n['id']}/)"
@@ -305,6 +304,7 @@ def write_quantity_page(
             ],
             "",
         ]
+    body += ["&nbsp;", "&nbsp;"]
     write_page(
         out_dir / f"{qid}.md",
         [f"title = {toml_string(quantity['name'])}", "bookHidden = true"],
