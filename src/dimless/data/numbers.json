@@ -7,12 +7,12 @@
     "numer": {
       "quantities": ["pressure-difference"],
       "exponents": [1],
-      "label": "pressure gradient due to friction"
+      "label": "static pressure difference"
     },
     "denom": {
       "quantities": ["density", "velocity"],
       "exponents": [1, 2],
-      "label": "inertial pressure"
+      "label": "dynamic pressure"
     },
     "regimes": {
       "duct flow": {
@@ -37,12 +37,12 @@
     "numer": {
       "quantities": ["velocity"],
       "exponents": [1],
-      "label": "inertial effects"
+      "label": "flow velocity"
     },
     "denom": {
       "quantities": ["gravitational-acceleration", "length"],
       "exponents": [0.5, 0.5],
-      "label": "gravitational effects"
+      "label": "gravitational wave speed"
     },
     "regimes": {
       "open channel flow": {
@@ -65,12 +65,12 @@
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "convective (total) heat transfer"
+      "label": "convective heat transfer"
     },
     "denom": {
       "quantities": ["thermal-conductivity"],
       "exponents": [1],
-      "label": "conductive heat transfer"
+      "label": "thermal conductivity"
     },
     "regimes": {
       "forced convection": {
@@ -93,12 +93,12 @@
     "numer": {
       "quantities": ["density", "velocity", "length"],
       "exponents": [1, 1, 1],
-      "label": "inertial effects"
+      "label": "inertial momentum transport"
     },
     "denom": {
       "quantities": ["dynamic-viscosity"],
       "exponents": [1],
-      "label": "viscous effects"
+      "label": "dynamic viscosity"
     },
     "regimes": {
       "pipe flow": {
@@ -122,12 +122,12 @@
     "numer": {
       "quantities": ["frequency", "length"],
       "exponents": [1, 1],
-      "label": "oscillation timescale"
+      "label": "oscillation velocity scale"
     },
     "denom": {
       "quantities": ["velocity"],
       "exponents": [1],
-      "label": "convective timescale"
+      "label": "flow velocity"
     },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
@@ -192,15 +192,11 @@
     "numer": {
       "quantities": ["dynamic-viscosity", "density"],
       "exponents": [1, -1],
-      "label": "momentum diffusivity"
+      "label": "kinematic viscosity"
     },
     "denom": {
-      "quantities": [
-        "thermal-conductivity",
-        "density",
-        "convective-heat-transfer-coefficient"
-      ],
-      "exponents": [1, -1, -1],
+      "quantities": ["thermal-diffusivity"],
+      "exponents": [1],
       "label": "thermal diffusivity"
     },
     "domain": "heat-transfer",
@@ -251,7 +247,7 @@
     "numer": {
       "quantities": ["dynamic-viscosity", "density"],
       "exponents": [1, -1],
-      "label": "momentum diffusivity"
+      "label": "kinematic viscosity"
     },
     "denom": {
       "quantities": ["diffusivity"],
@@ -280,12 +276,12 @@
     "numer": {
       "quantities": ["mass-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "convective mass transfer"
+      "label": "convective mass transport"
     },
     "denom": {
       "quantities": ["diffusivity"],
       "exponents": [1],
-      "label": "diffusive mass transfer"
+      "label": "molecular diffusivity"
     },
     "regimes": {
       "mass transfer": {
@@ -308,12 +304,12 @@
     "numer": {
       "quantities": ["velocity", "length"],
       "exponents": [1, 1],
-      "label": "advective heat transport"
+      "label": "advective transport rate"
     },
     "denom": {
       "quantities": ["thermal-diffusivity"],
       "exponents": [1],
-      "label": "diffusive heat transport"
+      "label": "thermal diffusivity"
     },
     "regimes": {
       "heat transfer": {
@@ -336,12 +332,12 @@
     "numer": {
       "quantities": ["thermal-diffusivity", "time"],
       "exponents": [1, 1],
-      "label": "thermal diffusion area"
+      "label": "thermal diffusion length squared"
     },
     "denom": {
       "quantities": ["length"],
       "exponents": [2],
-      "label": "domain cross-section area"
+      "label": "characteristic length squared"
     },
     "regimes": {
       "transient heat conduction": {
@@ -393,12 +389,12 @@
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "convective (surface) heat transfer"
+      "label": "surface convective heat transfer"
     },
     "denom": {
       "quantities": ["thermal-conductivity"],
       "exponents": [1],
-      "label": "conductive heat transfer"
+      "label": "thermal conductivity"
     },
     "regimes": {
       "heat conduction in solids": {
