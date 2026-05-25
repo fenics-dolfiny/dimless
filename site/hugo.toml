@@ -1,4 +1,4 @@
-baseURL = "https://uniluxembourg.gitlab.io/fstm/doe/zed/research/projects/dimless"
+baseURL = "https://dimless.org/"
 languageCode = "en-us"
 title = "Encyclopedia of dimensionless numbers"
 enableRobotsTXT = true
