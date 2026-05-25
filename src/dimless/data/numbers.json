@@ -7,7 +7,7 @@
     "numer": {
       "quantities": ["pressure-difference"],
       "exponents": [1],
-      "label": "static pressure difference"
+      "label": "pressure drop"
     },
     "denom": {
       "quantities": ["density", "velocity"],
@@ -17,7 +17,7 @@
     "regimes": {
       "duct flow": {
         "thresholds": [0, 0.7, 0.9, 1.1, null],
-        "labels": ["high inertia", "real-world", "ideal", "friction dominant"],
+        "labels": ["high inertia", "practical", "ideal", "friction dominant"],
         "descriptions": [
           "Inertial forces dominate. Pressure drop is small compared to dynamic pressure.",
           "Typical for many engineering applications. Both inertial and frictional effects are important.",
@@ -42,7 +42,7 @@
     "denom": {
       "quantities": ["gravitational-acceleration", "length"],
       "exponents": [0.5, 0.5],
-      "label": "gravitational wave speed"
+      "label": "gravity wave speed"
     },
     "regimes": {
       "open channel flow": {
@@ -70,15 +70,15 @@
     "denom": {
       "quantities": ["thermal-conductivity"],
       "exponents": [1],
-      "label": "thermal conductivity"
+      "label": "conductive heat transfer"
     },
     "regimes": {
       "forced convection": {
         "thresholds": [1, 2, null],
         "labels": ["conduction dominated", "convection dominated"],
         "descriptions": [
-          "Heat transfer is dominated by conduction. Occurs in stagnant fluids or thin boundary layers.",
-          "Heat transfer is dominated by convection. Occurs in well-mixed fluids or thick boundary layers."
+          "Heat transfer is close to the purely conductive reference limit. Occurs in stagnant fluids or weakly convective boundary layers.",
+          "Convection enhances heat transfer above the purely conductive reference rate. Occurs in moving or well mixed fluids and thin thermal boundary layers."
         ]
       }
     },
@@ -93,12 +93,12 @@
     "numer": {
       "quantities": ["density", "velocity", "length"],
       "exponents": [1, 1, 1],
-      "label": "inertial momentum transport"
+      "label": "inertia"
     },
     "denom": {
       "quantities": ["dynamic-viscosity"],
       "exponents": [1],
-      "label": "dynamic viscosity"
+      "label": "viscosity"
     },
     "regimes": {
       "pipe flow": {
@@ -122,12 +122,23 @@
     "numer": {
       "quantities": ["frequency", "length"],
       "exponents": [1, 1],
-      "label": "oscillation velocity scale"
+      "label": "oscillation speed"
     },
     "denom": {
       "quantities": ["velocity"],
       "exponents": [1],
-      "label": "flow velocity"
+      "label": "flow speed"
+    },
+    "regimes": {
+      "fluid oscillations": {
+        "thresholds": [0, 0.1, 1.0, null],
+        "labels": ["low", "intermediate/shedding", "high"],
+        "descriptions": [
+          "Oscillations are rapidly swept by the fast flow.",
+          "Periodic vortex shedding patterns.",
+          "Localized oscillations dominate the flow. The fluid vibrates or pulsates in place."
+        ]
+      }
     },
     "domain": "fluid-mechanics",
     "see_also": ["reynolds", "froude"]
@@ -140,26 +151,26 @@
     "numer": {
       "quantities": ["density", "velocity"],
       "exponents": [1, 2],
-      "label": "inertial pressure"
+      "label": "inertia"
     },
     "denom": {
       "quantities": ["surface-tension", "length"],
       "exponents": [1, -1],
-      "label": "capillary pressure"
+      "label": "surface tension"
     },
     "regimes": {
       "liquid jet breakup": {
         "thresholds": [0, 8, 40, 350, null],
         "labels": [
           "Rayleigh",
-          "first wind-induced",
-          "second wind-induced",
+          "first wind induced",
+          "second wind induced",
           "atomization"
         ],
         "descriptions": [
           "Surface tension drives axisymmetric capillary instability. Jet breaks into droplets larger than the jet diameter at a distance far downstream.",
           "Aerodynamic forces enhance Rayleigh instability. Droplets form near the jet diameter; breakup length begins to decrease.",
-          "Short-wavelength surface waves stripped by aerodynamic pressure produce droplets smaller than the jet diameter.",
+          "Short wavelength surface waves stripped by aerodynamic pressure produce droplets smaller than the jet diameter.",
           "Jet disintegrates immediately at the nozzle exit into a dense spray of very fine droplets. Dominant in fuel injectors."
         ]
       },
@@ -177,7 +188,7 @@
           "Droplet deforms into a thin bag inflated by the flow, which ruptures into fine droplets with a coarser rim fragment.",
           "Combined bag and stamen breakup. A liquid stamen forms inside the bag, producing a bimodal fragment size distribution.",
           "Liquid is continuously stripped from the droplet equator as thin sheets, forming many small satellite droplets.",
-          "Droplet shatters almost instantaneously into a cloud of fine fragments. Relevant to high-speed impacts and sprays."
+          "Droplet shatters almost instantaneously into a cloud of fine fragments. Relevant to high speed impacts and sprays."
         ]
       }
     },
@@ -190,14 +201,25 @@
     "symbol": "\\text{Pr}",
     "aliases": [],
     "numer": {
-      "quantities": ["dynamic-viscosity", "density"],
-      "exponents": [1, -1],
-      "label": "kinematic viscosity"
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [1],
+      "label": "momentum diffusion"
     },
     "denom": {
       "quantities": ["thermal-diffusivity"],
       "exponents": [1],
-      "label": "thermal diffusivity"
+      "label": "heat diffusion"
+    },
+    "regimes": {
+      "heat transfer": {
+        "thresholds": [0, 0.1, 10, null],
+        "labels": ["liquid metal", "gas", "oil or viscous liquid"],
+        "descriptions": [
+          "Thermal diffusivity dominates over momentum diffusion. Thermal boundary layers are much thicker than velocity boundary layers, typical of liquid metals.",
+          "Momentum and thermal diffusivities are comparable. Velocity and thermal boundary layers have similar thicknesses, typical of many gases.",
+          "Momentum diffusion dominates over thermal diffusion. Thermal boundary layers are thinner than velocity boundary layers, typical of oils and viscous liquids."
+        ]
+      }
     },
     "domain": "heat-transfer",
     "see_also": []
@@ -210,12 +232,12 @@
     "numer": {
       "quantities": ["velocity"],
       "exponents": [1],
-      "label": "flow velocity"
+      "label": "flow speed"
     },
     "denom": {
       "quantities": ["speed-of-sound"],
       "exponents": [1],
-      "label": "speed of sound"
+      "label": "sound speed"
     },
     "regimes": {
       "compressible flow": {
@@ -245,14 +267,14 @@
     "symbol": "\\text{Sc}",
     "aliases": [],
     "numer": {
-      "quantities": ["dynamic-viscosity", "density"],
-      "exponents": [1, -1],
-      "label": "kinematic viscosity"
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [1],
+      "label": "momentum diffusion"
     },
     "denom": {
       "quantities": ["diffusivity"],
       "exponents": [1],
-      "label": "mass diffusivity"
+      "label": "mass diffusion"
     },
     "regimes": {
       "molecular diffusion": {
@@ -261,7 +283,7 @@
         "descriptions": [
           "Mass diffusivity dominates over momentum diffusivity. Occurs in liquid metals and dilute gases.",
           "Momentum and mass diffusivities are comparable. Common in many gases.",
-          "Typical for liquids, e.g. 600 - 700 for water."
+          "Typical for liquids, e.g. 600 to 700 for water."
         ]
       }
     },
@@ -276,12 +298,12 @@
     "numer": {
       "quantities": ["mass-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "convective mass transport"
+      "label": "convective mass transfer"
     },
     "denom": {
       "quantities": ["diffusivity"],
       "exponents": [1],
-      "label": "molecular diffusivity"
+      "label": "molecular diffusion"
     },
     "regimes": {
       "mass transfer": {
@@ -304,12 +326,12 @@
     "numer": {
       "quantities": ["velocity", "length"],
       "exponents": [1, 1],
-      "label": "advective transport rate"
+      "label": "advection"
     },
     "denom": {
       "quantities": ["thermal-diffusivity"],
       "exponents": [1],
-      "label": "thermal diffusivity"
+      "label": "thermal diffusion"
     },
     "regimes": {
       "heat transfer": {
@@ -332,12 +354,12 @@
     "numer": {
       "quantities": ["thermal-diffusivity", "time"],
       "exponents": [1, 1],
-      "label": "thermal diffusion length squared"
+      "label": "thermal diffusion spread"
     },
     "denom": {
       "quantities": ["length"],
       "exponents": [2],
-      "label": "characteristic length squared"
+      "label": "length squared"
     },
     "regimes": {
       "transient heat conduction": {
@@ -360,12 +382,12 @@
     "numer": {
       "quantities": ["dynamic-viscosity", "velocity"],
       "exponents": [1, 1],
-      "label": "viscous drag force per unit length"
+      "label": "viscous stress"
     },
     "denom": {
       "quantities": ["surface-tension"],
       "exponents": [1],
-      "label": "surface tension force per unit length"
+      "label": "surface tension"
     },
     "regimes": {
       "multiphase flow": {
@@ -389,29 +411,325 @@
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
-      "label": "surface convective heat transfer"
+      "label": "internal conduction resistance"
     },
     "denom": {
       "quantities": ["thermal-conductivity"],
       "exponents": [1],
-      "label": "thermal conductivity"
+      "label": "surface convection resistance"
     },
     "regimes": {
       "heat conduction in solids": {
         "thresholds": [0, 0.1, 40, null],
         "labels": [
-          "uniform temperature",
-          "temperature gradients",
-          "surface control"
+          "lumped/uniform temperature",
+          "internal temperature gradients",
+          "conduction limited"
         ],
         "descriptions": [
-          "Temperature gradients within the solid are negligible. Surface temperature is uniform. Lumped capacitance model applies.",
-          "Significant temperature gradients exist within the solid. Internal conduction resistance is important. Requires solving the heat equation.",
-          "Thermal resistance is dominated by surface convection. Internal conduction is very efficient."
+          "Internal conduction resistance is small compared with surface convection resistance. Temperature gradients inside the solid are negligible and the lumped capacitance model applies.",
+          "Internal conduction resistance is significant. Temperature gradients develop inside the solid and the heat equation must usually be solved.",
+          "Internal conduction resistance dominates over surface convection resistance. The surface equilibrates rapidly relative to the interior, and strong internal gradients can persist."
         ]
       }
     },
     "domain": "heat-transfer",
     "see_also": []
+  },
+  {
+    "id": "bond",
+    "name": "Bond number",
+    "symbol": "\\text{Bo}",
+    "aliases": ["Eötvös number"],
+    "numer": {
+      "quantities": ["density", "gravitational-acceleration", "length"],
+      "exponents": [1, 1, 2],
+      "label": "gravity"
+    },
+    "denom": {
+      "quantities": ["surface-tension"],
+      "exponents": [1],
+      "label": "surface tension"
+    },
+    "regimes": {
+      "capillary-gravity flow": {
+        "thresholds": [0, 1, null],
+        "labels": ["capillary dominated", "gravity dominated"],
+        "descriptions": [
+          "Surface tension controls interface shape. Droplets and menisci remain strongly curved by capillary forces.",
+          "Gravity controls interface deformation. Large droplets, bubbles, and free surfaces flatten or sag under their own weight."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["capillary", "weber", "froude"]
+  },
+  {
+    "id": "ohnesorge",
+    "name": "Ohnesorge number",
+    "symbol": "\\text{Oh}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["dynamic-viscosity"],
+      "exponents": [1],
+      "label": "viscous damping"
+    },
+    "denom": {
+      "quantities": ["density", "surface-tension", "length"],
+      "exponents": [0.5, 0.5, 0.5],
+      "label": "inertia and surface tension"
+    },
+    "regimes": {
+      "droplet dynamics": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": ["inertia and capillarity", "mixed", "viscous"],
+        "descriptions": [
+          "Viscous dissipation is weak. Oscillation, pinch off, and breakup are governed mainly by inertia and surface tension.",
+          "Viscous, inertial, and capillary effects are all important. Droplet relaxation and breakup are noticeably damped.",
+          "Viscous dissipation dominates. Interfaces relax slowly and capillary waves are strongly suppressed."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["weber", "capillary", "laplace"]
+  },
+  {
+    "id": "laplace",
+    "name": "Laplace number",
+    "symbol": "\\text{La}",
+    "aliases": ["Suratman number"],
+    "numer": {
+      "quantities": ["density", "surface-tension", "length"],
+      "exponents": [1, 1, 1],
+      "label": "inertia and surface tension"
+    },
+    "denom": {
+      "quantities": ["dynamic-viscosity"],
+      "exponents": [2],
+      "label": "viscous damping"
+    },
+    "regimes": {
+      "free surface flow": {
+        "thresholds": [0, 1, 1000, null],
+        "labels": [
+          "viscous dominated",
+          "transitional",
+          "inertia and capillarity dominated"
+        ],
+        "descriptions": [
+          "Viscous stresses damp interfacial motion rapidly. Surface waves and breakup are sluggish.",
+          "Viscous damping competes with inertia and surface tension. Interface motion depends strongly on geometry and forcing.",
+          "Inertia and surface tension dominate over viscous damping. Capillary waves and rapid pinch off are prominent."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["ohnesorge", "weber", "capillary"]
+  },
+  {
+    "id": "galileo",
+    "name": "Galileo number",
+    "symbol": "\\text{Ga}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["gravitational-acceleration", "length"],
+      "exponents": [1, 3],
+      "label": "gravity driven motion"
+    },
+    "denom": {
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [2],
+      "label": "viscous diffusion"
+    },
+    "regimes": {
+      "settling and natural motion": {
+        "thresholds": [0, 1, 1000, null],
+        "labels": [
+          "viscous settling",
+          "transitional settling",
+          "inertial settling"
+        ],
+        "descriptions": [
+          "Viscous resistance controls motion. Falling particles or bubbles move slowly and remain in a creeping flow regime.",
+          "Gravity driven motion is affected by both viscosity and inertia. Wakes and path instabilities may begin to appear.",
+          "Inertial effects dominate gravitational motion. Wakes, vortex shedding, and unsteady trajectories become important."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["reynolds", "froude", "bond"]
+  },
+  {
+    "id": "cauchy",
+    "name": "Cauchy number",
+    "symbol": "\\text{Cy}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "inertial stress"
+    },
+    "denom": {
+      "quantities": ["bulk-modulus"],
+      "exponents": [1],
+      "label": "elastic stress"
+    },
+    "regimes": {
+      "dynamic similarity": {
+        "thresholds": [0, 1, null],
+        "labels": ["stress dominated", "inertia dominated"],
+        "descriptions": [
+          "Reference stresses are large compared with inertial stresses. Deformation or pressure response controls the motion.",
+          "Inertial stresses exceed the reference stress scale. Dynamic deformation and wave effects become significant."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["euler", "mach", "reynolds"]
+  },
+  {
+    "id": "womersley",
+    "name": "Womersley number",
+    "symbol": "\\alpha",
+    "aliases": [],
+    "numer": {
+      "quantities": ["length", "frequency", "density"],
+      "exponents": [1, 0.5, 0.5],
+      "label": "characteristic length"
+    },
+    "denom": {
+      "quantities": ["dynamic-viscosity"],
+      "exponents": [0.5],
+      "label": "viscous penetration depth"
+    },
+    "regimes": {
+      "oscillatory pipe flow": {
+        "thresholds": [0, 1, 10, null],
+        "labels": [
+          "quasi steady",
+          "developing oscillatory",
+          "plug like oscillatory"
+        ],
+        "descriptions": [
+          "Viscous diffusion spans the flow during each cycle. The velocity profile remains close to the steady laminar shape.",
+          "Unsteady inertia and viscosity are both important. Phase lag and profile distortion develop across the section.",
+          "Oscillation is too rapid for viscous diffusion to penetrate the full radius. The core moves nearly as a plug with thin oscillatory boundary layers."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["reynolds", "strouhal"]
+  },
+  {
+    "id": "courant",
+    "name": "Courant number",
+    "symbol": "\\text{Co}",
+    "aliases": ["CFL number"],
+    "numer": {
+      "quantities": ["velocity", "time"],
+      "exponents": [1, 1],
+      "label": "distance travelled per step"
+    },
+    "denom": {
+      "quantities": ["length"],
+      "exponents": [1],
+      "label": "cell length"
+    },
+    "regimes": {
+      "explicit time integration": {
+        "thresholds": [0, 1, null],
+        "labels": ["subcell advection", "supercell advection"],
+        "descriptions": [
+          "Information travels less than one characteristic length per time step. Explicit advection schemes are more likely to remain stable.",
+          "Information travels more than one characteristic length per time step. Many explicit schemes become unstable or inaccurate unless additional treatment is used."
+        ]
+      }
+    },
+    "domain": "numerical-methods",
+    "see_also": ["peclet", "fourier"]
+  },
+  {
+    "id": "lewis",
+    "name": "Lewis number",
+    "symbol": "\\text{Le}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["thermal-diffusivity"],
+      "exponents": [1],
+      "label": "thermal diffusion"
+    },
+    "denom": {
+      "quantities": ["diffusivity"],
+      "exponents": [1],
+      "label": "mass diffusion"
+    },
+    "regimes": {
+      "coupled heat and mass transfer": {
+        "thresholds": [0, 1, null],
+        "labels": ["mass diffuses faster", "heat diffuses faster"],
+        "descriptions": [
+          "Species concentration disturbances spread faster than temperature disturbances. Mass transfer boundary layers tend to be thicker than thermal boundary layers.",
+          "Temperature disturbances spread faster than species concentration disturbances. Thermal boundary layers tend to be thicker than concentration boundary layers."
+        ]
+      }
+    },
+    "domain": "mass-transfer",
+    "see_also": ["schmidt", "prandtl", "peclet"]
+  },
+  {
+    "id": "bejan",
+    "name": "Bejan number",
+    "symbol": "\\text{Be}",
+    "aliases": [],
+    "numer": {
+      "quantities": ["pressure-difference", "length"],
+      "exponents": [1, 2],
+      "label": "pressure driving"
+    },
+    "denom": {
+      "quantities": ["dynamic-viscosity", "thermal-diffusivity"],
+      "exponents": [1, 1],
+      "label": "viscous thermal diffusion"
+    },
+    "regimes": {
+      "forced convection": {
+        "thresholds": [0, 1, null],
+        "labels": ["diffusion limited", "pressure driven"],
+        "descriptions": [
+          "Pressure work is small relative to viscous and diffusive transport. Flow forcing has a weak effect on thermal transport.",
+          "Pressure work strongly drives transport. Forced convection and pressure losses are central to the thermal behavior."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["nusselt", "peclet", "reynolds"]
+  },
+  {
+    "id": "mass-fourier",
+    "name": "Mass Fourier number",
+    "symbol": "\\text{Fo}_m",
+    "aliases": [],
+    "numer": {
+      "quantities": ["diffusivity", "time"],
+      "exponents": [1, 1],
+      "label": "mass diffusion spread"
+    },
+    "denom": {
+      "quantities": ["length"],
+      "exponents": [2],
+      "label": "length squared"
+    },
+    "regimes": {
+      "transient diffusion": {
+        "thresholds": [0, 0.2, null],
+        "labels": ["early transient", "late transient"],
+        "descriptions": [
+          "Concentration gradients remain localized. The diffusing species has not penetrated the full characteristic length.",
+          "Diffusion has spread across much of the characteristic length. Concentration gradients are relaxing toward equilibrium."
+        ]
+      }
+    },
+    "domain": "mass-transfer",
+    "see_also": ["fourier", "sherwood", "schmidt"]
   }
 ]
