@@ -55,11 +55,25 @@
       "description": "Momentum diffusivity of a fluid, equal to dynamic viscosity divided by density. It measures how quickly viscous momentum disturbances spread through the fluid."
     },
     "pressure-difference": {
-      "name": "pressure difference",
-      "symbol": "\\Delta p",
+      "name": "pressure drop",
+      "symbol": "p_1 - p_2",
       "dimension": [0, 0, -1, 0, 1, 0, -2],
       "si_units": [1, 0, 0, 0, 0, 0, 0, 0],
-      "description": "Difference in static pressure between two points in a flow field. Acts as the driving force for fluid motion in closed conduits and quantifies energy losses due to friction and changes in geometry."
+      "description": "Static pressure decrease between an upstream station and a downstream station. It acts as the driving force for conduit flow and measures losses due to friction, fittings, or geometry changes."
+    },
+    "reference-pressure-difference": {
+      "name": "local-reference pressure difference",
+      "symbol": "p - p_\\infty",
+      "dimension": [0, 0, -1, 0, 1, 0, -2],
+      "si_units": [1, 0, 0, 0, 0, 0, 0, 0],
+      "description": "Difference between local static pressure and a reference or free-stream static pressure. It is the pressure contrast used to express local pressure loading on a body or surface."
+    },
+    "pressure-margin-to-vapor": {
+      "name": "pressure margin to vapor pressure",
+      "symbol": "p - p_v",
+      "dimension": [0, 0, -1, 0, 1, 0, -2],
+      "si_units": [1, 0, 0, 0, 0, 0, 0, 0],
+      "description": "Difference between the local or reference static pressure and the liquid vapor pressure. It measures how much pressure head remains before vapor cavities can form."
     },
     "bulk-modulus": {
       "name": "bulk modulus",
@@ -137,6 +151,69 @@
       "dimension": [0, 0, 0, 0, 0, 0, 1],
       "si_units": [0, 0, 0, 0, 0, 0, 1, 0],
       "description": "Elapsed time, used as the independent variable in transient analyses. Sets the temporal scale against which diffusion, convection, or oscillation rates are compared in unsteady dimensionless groups."
+    },
+    "surface-ambient-temperature-difference": {
+      "name": "surface-ambient temperature difference",
+      "symbol": "T_s - T_\\infty",
+      "dimension": [0, 0, 0, 0, 0, 1, 0],
+      "si_units": [0, 0, 0, 0, 0, 0, 0, 1],
+      "description": "Temperature difference between a surface and the surrounding or free-stream fluid. It is the driving temperature contrast for many convection, buoyancy, and wall-heating estimates."
+    },
+    "specific-heat-capacity": {
+      "name": "specific heat capacity",
+      "symbol": "c_p",
+      "dimension": [0, 0, 2, 0, 0, -1, -2],
+      "si_units": [0, 0, 0, 0, 0, 2, -2, -1],
+      "description": "Energy required to raise the temperature of unit mass by one kelvin at constant pressure. It sets the sensible heat storage scale in convective heat transfer and compressible-flow heating estimates."
+    },
+    "thermal-expansion-coefficient": {
+      "name": "thermal expansion coefficient",
+      "symbol": "\\beta",
+      "dimension": [0, 0, 0, 0, 0, -1, 0],
+      "si_units": [0, 0, 0, 0, 0, 0, 0, -1],
+      "description": "Fractional density or volume change per unit temperature change. In buoyancy-driven flow it converts a temperature difference into a density contrast under the Boussinesq approximation."
+    },
+    "force": {
+      "name": "force",
+      "symbol": "F",
+      "dimension": [0, 0, 1, 0, 1, 0, -2],
+      "si_units": [0, 1, 0, 0, 0, 0, 0, 0],
+      "description": "Mechanical load exerted on a body or control surface. In aerodynamic and hydrodynamic coefficients it is normalized by dynamic pressure and reference area."
+    },
+    "area": {
+      "name": "reference area",
+      "symbol": "A",
+      "dimension": [0, 0, 2, 0, 0, 0, 0],
+      "si_units": [0, 0, 0, 0, 0, 2, 0, 0],
+      "description": "Characteristic surface or projected area used to normalize forces, fluxes, or loads. The appropriate reference area is set by the geometry and convention for the coefficient being formed."
+    },
+    "shear-stress": {
+      "name": "shear stress",
+      "symbol": "\\tau",
+      "dimension": [0, 0, -1, 0, 1, 0, -2],
+      "si_units": [1, 0, 0, 0, 0, 0, 0, 0],
+      "description": "Tangential stress transmitted across a surface by viscous or turbulent momentum transport. It is commonly normalized by dynamic pressure in wall-friction and sediment-transport parameters."
+    },
+    "angular-velocity": {
+      "name": "angular velocity",
+      "symbol": "\\Omega",
+      "dimension": [0, 0, 0, 0, 0, 0, -1],
+      "si_units": [0, 0, 0, 1, 0, 0, 0, 0],
+      "description": "Rate of rotation of a frame, body, or flow. It sets the Coriolis and rotational time scale in geophysical, turbomachinery, and rotating-container flows."
+    },
+    "mean-free-path": {
+      "name": "mean free path",
+      "symbol": "\\lambda",
+      "dimension": [0, 0, 1, 0, 0, 0, 0],
+      "si_units": [0, 0, 0, 0, 0, 1, 0, 0],
+      "description": "Average distance a molecule travels between collisions. It provides the microscopic length scale used to decide whether a gas can be treated as a continuum."
+    },
+    "solid-fluid-density-difference": {
+      "name": "solid-fluid density difference",
+      "symbol": "\\rho_s - \\rho_f",
+      "dimension": [0, 0, -3, 0, 1, 0, 0],
+      "si_units": [0, 0, 0, 0, 1, -3, 0, 0],
+      "description": "Density of a solid particle or sediment grain minus the surrounding fluid density. It sets the submerged-weight contrast for settling, suspension, and sediment transport."
     }
   }
 }

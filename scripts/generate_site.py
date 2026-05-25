@@ -1,3 +1,4 @@
+import html
 import json
 import math
 import shutil
@@ -134,12 +135,12 @@ def tex_exp(power):
 
 
 def tex_term(symbol, power):
+    if " " in symbol:
+        symbol = f"({symbol})"
     if power == 1:
         return symbol
     if power == 0.5:
         return f"\\sqrt{{{symbol}}}"
-    if " " in symbol:
-        symbol = f"({symbol})"
     return f"{symbol}^{{{tex_exp(power)}}}"
 
 
@@ -151,12 +152,7 @@ def tex_product(quantities, exponents, symbols):
         target.append((symbols[qid], abs(power)))
 
     def render(items):
-        groups = {}
-        for symbol, power in items:
-            groups.setdefault(power, []).append(symbol)
-        return " ".join(
-            tex_term(" ".join(groups[power]), power) for power in sorted(groups, reverse=True)
-        )
+        return " ".join(tex_term(symbol, power) for symbol, power in items)
 
     result = render(top) or "1"
     if bottom:
@@ -198,6 +194,10 @@ def number_page(number, quantities, dimension_order, si_unit_order):
     if aliases := aliases_text(number):
         body.extend([f"Also known as: {aliases}.", ""])
 
+    if named_after := number.get("named_after"):
+        people = ", ".join(named_after)
+        body.extend([f"Named after: {people}.", ""])
+
     body.extend(
         [
             '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;'
@@ -208,6 +208,14 @@ def number_page(number, quantities, dimension_order, si_unit_order):
             "",
             "</div>",
             "",
+        ]
+    )
+
+    if number.get("description"):
+        body.extend(["### Description", "", number["description"], ""])
+
+    body.extend(
+        [
             "### Quantities",
             "",
             "| Name | Symbol | SI units | Dimension |",
@@ -268,7 +276,7 @@ def quantity_page(qid, quantity, numbers, dimension_order):
     if used_in:
         body.extend(["### Used in", ""])
         for number in sorted(used_in, key=lambda item: item["name"]):
-            body.append(f"- [{number['name']}](../numbers/{number['id']}/)")
+            body.append(f"- [{number['name']}](../../numbers/{number['id']}/)")
         body.append("")
 
     return body + ["&nbsp;", "&nbsp;"]
@@ -316,11 +324,89 @@ def home_page(numbers, quantities):
         "quantity involved, and - where applicable - the flow regimes the number delineates.",
         "Each quantity links back to the numbers that use it.",
         "",
-        "Explore all [numbers](docs/numbers/) or look up individual [quantities](docs/quantities/).",
+        "Explore all [numbers](docs/numbers/), look up individual [quantities](docs/quantities/),",
+        "or read more [about the database](docs/about/).",
         "",
         "<b>AI use disclaimer:</b> ChatGPT 5.5 was used to help write and generate some of the "
         "content on this website. All output was reviewed and edited by a human before "
         "being published.",
+    ]
+
+
+def about_page():
+    return [
+        "# About",
+        "",
+        "This project is a small, systematic database of dimensionless numbers and the",
+        "physical quantities they compare. The goal is not only to make a readable reference,",
+        "but also to keep every entry in a regular, easily parsable form that can be reused by",
+        "scripts, calculators, visualizations, teaching material, or other tools.",
+        "",
+        "Each dimensionless number is represented as a ratio of named quantities. Those",
+        "quantities carry dimensions, SI-unit exponents, symbols, and short explanations, so",
+        "the database can check dimensional consistency and generate pages without relying on",
+        "ad hoc prose.",
+        "",
+        "## Number entries",
+        "",
+        "A number entry defines the formula, the physical meaning of the numerator and",
+        "denominator, optional aliases and eponyms, related numbers, and any useful regimes.",
+        "",
+        "```json",
+        "{",
+        '  "id": "reynolds",',
+        '  "name": "Reynolds number",',
+        '  "symbol": "\\\\text{Re}",',
+        '  "aliases": [],',
+        '  "named_after": ["Osborne Reynolds (1842-1912)"],',
+        '  "description": "Measures inertial transport relative to viscous resistance.",',
+        '  "numer": {',
+        '    "quantities": ["density", "velocity", "length"],',
+        '    "exponents": [1, 1, 1],',
+        '    "label": "inertia"',
+        "  },",
+        '  "denom": {',
+        '    "quantities": ["dynamic-viscosity"],',
+        '    "exponents": [1],',
+        '    "label": "viscosity"',
+        "  },",
+        '  "regimes": {',
+        '    "pipe flow": {',
+        '      "thresholds": [0, 2300, 4000, null],',
+        '      "labels": ["laminar", "transitional", "turbulent"]',
+        "    }",
+        "  },",
+        '  "domain": "fluid-mechanics",',
+        '  "see_also": ["euler", "froude", "strouhal"]',
+        "}",
+        "```",
+        "",
+        "`quantities` lists reference quantity IDs, and `exponents` gives the power of each",
+        "quantity in the product. The numerator and denominator dimensions must cancel. A",
+        "`null` threshold means the final regime is open-ended.",
+        "",
+        "## Quantity entries",
+        "",
+        "A quantity entry defines a reusable physical ingredient. Dimension and SI-unit vectors",
+        "are stored as exponents in the global orders defined in `quantities.json`.",
+        "",
+        "```json",
+        "{",
+        '  "density": {',
+        '    "name": "mass density",',
+        '    "symbol": "\\\\rho",',
+        '    "dimension": [0, 0, -3, 0, 1, 0, 0],',
+        '    "si_units": [0, 0, 0, 0, 1, -3, 0, 0],',
+        '    "description": "Mass per unit volume of a substance."',
+        "  }",
+        "}",
+        "```",
+        "",
+        "For example, the density dimension vector means mass times length to the minus",
+        "third power. The SI-unit vector means kilograms per cubic metre. Because every number",
+        "points to these shared quantity records, the same physical quantity is described once",
+        "and reused consistently throughout the database.",
+        "",
     ]
 
 
@@ -332,11 +418,15 @@ def numbers_index(numbers):
     body = ["# Dimensionless numbers", ""]
     for domain, domain_numbers in sorted(by_domain.items()):
         body.extend([f"## {domain.replace('-', ' ').capitalize()}", ""])
+        body.append('<ul style="columns:2 18rem;column-gap:2.5rem;padding-left:1.25rem">')
         for number in sorted(domain_numbers, key=lambda item: item["name"]):
             aliases = aliases_text(number)
-            suffix = f" ({aliases})" if aliases else ""
-            body.append(f"- [{number['name']}]({number['id']}/){suffix}")
-        body.append("")
+            suffix = f" ({html.escape(aliases)})" if aliases else ""
+            body.append(
+                f'<li style="break-inside:avoid;margin:0 0 0.35rem">'
+                f'<a href="{number["id"]}/">{html.escape(number["name"])}</a>{suffix}</li>'
+            )
+        body.extend(["</ul>", ""])
     return body
 
 
@@ -358,6 +448,11 @@ def main():
         CONTENT / "_index.md",
         title_frontmatter("Encyclopedia of dimensionless numbers"),
         home_page(numbers, quantities),
+    )
+    write_page(
+        CONTENT / "docs" / "about.md",
+        title_frontmatter("About"),
+        about_page(),
     )
 
     reset_dir(NUMBERS_OUT)

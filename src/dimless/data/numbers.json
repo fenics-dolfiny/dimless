@@ -4,6 +4,8 @@
     "name": "Euler number",
     "symbol": "\\text{Eu}",
     "aliases": [],
+    "named_after": ["Leonhard Euler (1707-1783)"],
+    "description": "Measures pressure drop relative to dynamic pressure. It indicates how strongly pressure forces or losses compare with inertial motion in a flow.",
     "numer": {
       "quantities": ["pressure-difference"],
       "exponents": [1],
@@ -34,6 +36,8 @@
     "name": "Froude number",
     "symbol": "\\text{Fr}",
     "aliases": [],
+    "named_after": ["William Froude (1810-1879)"],
+    "description": "Measures flow speed relative to gravity wave speed. It indicates whether gravity can communicate disturbances upstream in free-surface and stratified flows.",
     "numer": {
       "quantities": ["velocity"],
       "exponents": [1],
@@ -62,6 +66,8 @@
     "name": "Nusselt number",
     "symbol": "\\text{Nu}",
     "aliases": [],
+    "named_after": ["Wilhelm Nusselt (1882-1957)"],
+    "description": "Measures convective heat transfer relative to pure conduction across the same length scale. It indicates how much motion enhances heat transfer above the conductive reference.",
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
@@ -90,6 +96,8 @@
     "name": "Reynolds number",
     "symbol": "\\text{Re}",
     "aliases": [],
+    "named_after": ["Osborne Reynolds (1842-1912)"],
+    "description": "Measures inertial transport relative to viscous resistance. It is the primary indicator of laminar, transitional, and turbulent flow behavior.",
     "numer": {
       "quantities": ["density", "velocity", "length"],
       "exponents": [1, 1, 1],
@@ -119,6 +127,8 @@
     "name": "Strouhal number",
     "symbol": "\\text{St}",
     "aliases": [],
+    "named_after": ["Vincenc Strouhal (1850-1922)"],
+    "description": "Measures oscillation time scale relative to advective flow time scale. It connects periodic motion such as vortex shedding to the speed and size of the flow.",
     "numer": {
       "quantities": ["frequency", "length"],
       "exponents": [1, 1],
@@ -148,6 +158,8 @@
     "name": "Weber number",
     "symbol": "\\text{We}",
     "aliases": [],
+    "named_after": ["Moritz Weber (1871-1951)"],
+    "description": "Measures inertial stress relative to surface-tension stress. It indicates whether interfaces, jets, and droplets remain cohesive or break up.",
     "numer": {
       "quantities": ["density", "velocity"],
       "exponents": [1, 2],
@@ -200,6 +212,8 @@
     "name": "Prandtl number",
     "symbol": "\\text{Pr}",
     "aliases": [],
+    "named_after": ["Ludwig Prandtl (1875-1953)"],
+    "description": "Measures momentum diffusivity relative to thermal diffusivity. It indicates the relative thickness of velocity and thermal boundary layers.",
     "numer": {
       "quantities": ["kinematic-viscosity"],
       "exponents": [1],
@@ -229,6 +243,8 @@
     "name": "Mach number",
     "symbol": "\\text{Ma}",
     "aliases": [],
+    "named_after": ["Ernst Mach (1838-1916)"],
+    "description": "Measures flow speed relative to the speed of sound. It indicates whether compressibility, acoustic waves, and shocks are important.",
     "numer": {
       "quantities": ["velocity"],
       "exponents": [1],
@@ -266,6 +282,8 @@
     "name": "Schmidt number",
     "symbol": "\\text{Sc}",
     "aliases": [],
+    "named_after": ["Ernst Heinrich Wilhelm Schmidt (1892-1975)"],
+    "description": "Measures momentum diffusivity relative to mass diffusivity. It indicates the relative thickness of velocity and concentration boundary layers.",
     "numer": {
       "quantities": ["kinematic-viscosity"],
       "exponents": [1],
@@ -295,6 +313,8 @@
     "name": "Sherwood number",
     "symbol": "\\text{Sh}",
     "aliases": [],
+    "named_after": ["Thomas Kilgore Sherwood (1903-1976)"],
+    "description": "Measures convective mass transfer relative to molecular diffusion. It indicates how much flow enhances species transport above the diffusive reference.",
     "numer": {
       "quantities": ["mass-transfer-coefficient", "length"],
       "exponents": [1, 1],
@@ -323,6 +343,8 @@
     "name": "Péclet number",
     "symbol": "\\text{Pe}",
     "aliases": [],
+    "named_after": ["Jean Claude Eugène Péclet (1793-1857)"],
+    "description": "Measures advective heat transport relative to thermal diffusion. It indicates whether temperature is carried mainly by flow or smoothed by diffusion.",
     "numer": {
       "quantities": ["velocity", "length"],
       "exponents": [1, 1],
@@ -351,6 +373,8 @@
     "name": "Fourier number",
     "symbol": "\\text{Fo}",
     "aliases": [],
+    "named_after": ["Jean-Baptiste Joseph Fourier (1768-1830)"],
+    "description": "Measures elapsed time relative to the thermal diffusion time across a length scale. It indicates how far a transient temperature disturbance has penetrated.",
     "numer": {
       "quantities": ["thermal-diffusivity", "time"],
       "exponents": [1, 1],
@@ -379,6 +403,8 @@
     "name": "Capillary number",
     "symbol": "\\text{Ca}",
     "aliases": [],
+    "named_after": [],
+    "description": "Measures viscous stress relative to surface-tension stress. It indicates whether flow can deform interfaces against capillary restoring forces.",
     "numer": {
       "quantities": ["dynamic-viscosity", "velocity"],
       "exponents": [1, 1],
@@ -408,6 +434,8 @@
     "name": "Biot number",
     "symbol": "\\text{Bi}",
     "aliases": [],
+    "named_after": ["Jean-Baptiste Biot (1774-1862)"],
+    "description": "Measures internal conduction resistance relative to surface convection resistance. It indicates whether a solid can be treated as nearly uniform in temperature.",
     "numer": {
       "quantities": ["convective-heat-transfer-coefficient", "length"],
       "exponents": [1, 1],
@@ -441,6 +469,11 @@
     "name": "Bond number",
     "symbol": "\\text{Bo}",
     "aliases": ["Eötvös number"],
+    "named_after": [
+      "Wilfrid Noel Bond (1897-1937)",
+      "Loránd Eötvös (1848-1919)"
+    ],
+    "description": "Measures gravitational forcing relative to surface tension. It indicates whether interfaces are shaped more by weight or capillarity.",
     "numer": {
       "quantities": ["density", "gravitational-acceleration", "length"],
       "exponents": [1, 1, 2],
@@ -469,6 +502,8 @@
     "name": "Ohnesorge number",
     "symbol": "\\text{Oh}",
     "aliases": [],
+    "named_after": ["Wolfgang von Ohnesorge (1901-1976)"],
+    "description": "Measures viscous damping relative to inertial and capillary effects. It indicates how strongly viscosity suppresses droplet oscillation, pinch off, and breakup.",
     "numer": {
       "quantities": ["dynamic-viscosity"],
       "exponents": [1],
@@ -498,6 +533,8 @@
     "name": "Laplace number",
     "symbol": "\\text{La}",
     "aliases": ["Suratman number"],
+    "named_after": ["Pierre-Simon Laplace (1749-1827)"],
+    "description": "Measures inertial and capillary effects relative to viscous damping. It is the inverse-square counterpart of the Ohnesorge number for free-surface motion.",
     "numer": {
       "quantities": ["density", "surface-tension", "length"],
       "exponents": [1, 1, 1],
@@ -531,6 +568,8 @@
     "name": "Galileo number",
     "symbol": "\\text{Ga}",
     "aliases": [],
+    "named_after": ["Galileo Galilei (1564-1642)"],
+    "description": "Measures gravity-driven motion relative to viscous diffusion. It is useful for settling, rising bubbles, and natural motion set by body forces.",
     "numer": {
       "quantities": ["gravitational-acceleration", "length"],
       "exponents": [1, 3],
@@ -564,6 +603,8 @@
     "name": "Cauchy number",
     "symbol": "\\text{Cy}",
     "aliases": [],
+    "named_after": ["Augustin-Louis Cauchy (1789-1857)"],
+    "description": "Measures inertial stress relative to elastic or compressibility stress. It indicates when deformation, pressure waves, or material elasticity affect dynamic similarity.",
     "numer": {
       "quantities": ["density", "velocity"],
       "exponents": [1, 2],
@@ -592,6 +633,8 @@
     "name": "Womersley number",
     "symbol": "\\alpha",
     "aliases": [],
+    "named_after": ["John Ronald Womersley (1907-1958)"],
+    "description": "Measures oscillatory inertia relative to viscous diffusion in unsteady internal flow. It indicates whether velocity profiles can adjust within each cycle.",
     "numer": {
       "quantities": ["length", "frequency", "density"],
       "exponents": [1, 0.5, 0.5],
@@ -625,6 +668,8 @@
     "name": "Courant number",
     "symbol": "\\text{Co}",
     "aliases": ["CFL number"],
+    "named_after": ["Richard Courant (1888-1972)"],
+    "description": "Measures the distance information travels in one time step relative to a cell length. It is a stability and accuracy indicator for time-marching numerical schemes.",
     "numer": {
       "quantities": ["velocity", "time"],
       "exponents": [1, 1],
@@ -653,6 +698,8 @@
     "name": "Lewis number",
     "symbol": "\\text{Le}",
     "aliases": [],
+    "named_after": ["Warren K. Lewis (1882-1975)"],
+    "description": "Measures thermal diffusivity relative to mass diffusivity. It indicates whether heat or species concentration spreads faster.",
     "numer": {
       "quantities": ["thermal-diffusivity"],
       "exponents": [1],
@@ -681,6 +728,8 @@
     "name": "Bejan number",
     "symbol": "\\text{Be}",
     "aliases": [],
+    "named_after": ["Adrian Bejan (1948-)"],
+    "description": "Measures pressure driving relative to viscous and thermal diffusion. It characterizes forced-convection strength in pressure-driven heat-transfer problems.",
     "numer": {
       "quantities": ["pressure-difference", "length"],
       "exponents": [1, 2],
@@ -709,6 +758,8 @@
     "name": "Mass Fourier number",
     "symbol": "\\text{Fo}_m",
     "aliases": [],
+    "named_after": ["Jean-Baptiste Joseph Fourier (1768-1830)"],
+    "description": "Measures elapsed time relative to the mass diffusion time across a length scale. It indicates how far a transient concentration disturbance has penetrated.",
     "numer": {
       "quantities": ["diffusivity", "time"],
       "exponents": [1, 1],
@@ -731,5 +782,681 @@
     },
     "domain": "mass-transfer",
     "see_also": ["fourier", "sherwood", "schmidt"]
+  },
+  {
+    "id": "mass-peclet",
+    "name": "Mass Péclet number",
+    "symbol": "\\text{Pe}_m",
+    "aliases": ["Bodenstein number"],
+    "named_after": ["Jean Claude Eugène Péclet (1793-1857)"],
+    "description": "Measures advective species transport relative to molecular diffusion. It indicates whether concentration fields are carried mainly by flow or smoothed by diffusion.",
+    "numer": {
+      "quantities": ["velocity", "length"],
+      "exponents": [1, 1],
+      "label": "advection"
+    },
+    "denom": {
+      "quantities": ["diffusivity"],
+      "exponents": [1],
+      "label": "mass diffusion"
+    },
+    "regimes": {
+      "mass transfer": {
+        "thresholds": [0, 1, null],
+        "labels": ["diffusion dominated", "advection dominated"],
+        "descriptions": [
+          "Molecular diffusion transports species faster than the flow carries them across the characteristic length.",
+          "Bulk motion carries species faster than molecular diffusion can smooth concentration gradients."
+        ]
+      }
+    },
+    "domain": "mass-transfer",
+    "see_also": ["peclet", "sherwood", "schmidt"]
+  },
+  {
+    "id": "grashof",
+    "name": "Grashof number",
+    "symbol": "\\text{Gr}",
+    "aliases": [],
+    "named_after": ["Franz Grashof (1826-1893)"],
+    "description": "Measures buoyancy forcing relative to viscous damping. It is the natural-convection analogue of a Reynolds-number scale based on temperature-induced density differences.",
+    "numer": {
+      "quantities": [
+        "gravitational-acceleration",
+        "thermal-expansion-coefficient",
+        "surface-ambient-temperature-difference",
+        "length"
+      ],
+      "exponents": [1, 1, 1, 3],
+      "label": "buoyancy"
+    },
+    "denom": {
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [2],
+      "label": "viscous damping"
+    },
+    "regimes": {
+      "natural convection": {
+        "thresholds": [0, 100000000, 1000000000, null],
+        "labels": ["laminar", "transitional", "turbulent"],
+        "descriptions": [
+          "Viscous damping keeps buoyancy-driven motion smooth and ordered.",
+          "Buoyancy and inertia are strong enough for unsteady plumes and mixed laminar-turbulent behavior to appear.",
+          "Buoyancy-driven inertia dominates viscous damping. Natural-convection boundary layers and plumes become turbulent."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["rayleigh", "prandtl", "richardson"]
+  },
+  {
+    "id": "rayleigh",
+    "name": "Rayleigh number",
+    "symbol": "\\text{Ra}",
+    "aliases": [],
+    "named_after": ["John William Strutt, 3rd Baron Rayleigh (1842-1919)"],
+    "description": "Measures buoyancy forcing relative to combined momentum and thermal diffusion. It indicates the onset and strength of natural convection.",
+    "numer": {
+      "quantities": [
+        "gravitational-acceleration",
+        "thermal-expansion-coefficient",
+        "surface-ambient-temperature-difference",
+        "length"
+      ],
+      "exponents": [1, 1, 1, 3],
+      "label": "buoyancy"
+    },
+    "denom": {
+      "quantities": ["kinematic-viscosity", "thermal-diffusivity"],
+      "exponents": [1, 1],
+      "label": "momentum and heat diffusion"
+    },
+    "regimes": {
+      "buoyancy driven heat transfer": {
+        "thresholds": [0, 1708, 1000000000, null],
+        "labels": ["conductive", "convective", "turbulent convection"],
+        "descriptions": [
+          "Thermal diffusion suppresses buoyant motion. Heat transfer is mainly conductive in the classic horizontal-layer reference case.",
+          "Buoyant motion is sustained and enhances heat transport above conduction.",
+          "Buoyancy-driven flow becomes strongly unsteady and turbulent, producing vigorous mixing and enhanced heat transfer."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["grashof", "prandtl", "nusselt"]
+  },
+  {
+    "id": "richardson",
+    "name": "Richardson number",
+    "symbol": "\\text{Ri}",
+    "aliases": [],
+    "named_after": ["Lewis Fry Richardson (1881-1953)"],
+    "description": "Measures buoyancy relative to inertial forcing. It indicates whether a flow behaves more like forced, mixed, or natural convection.",
+    "numer": {
+      "quantities": [
+        "gravitational-acceleration",
+        "thermal-expansion-coefficient",
+        "surface-ambient-temperature-difference",
+        "length"
+      ],
+      "exponents": [1, 1, 1, 1],
+      "label": "buoyancy"
+    },
+    "denom": {
+      "quantities": ["velocity"],
+      "exponents": [2],
+      "label": "inertia"
+    },
+    "regimes": {
+      "mixed convection": {
+        "thresholds": [0, 0.25, 1, null],
+        "labels": [
+          "forced convection",
+          "mixed convection",
+          "natural convection"
+        ],
+        "descriptions": [
+          "Inertial forcing dominates buoyancy. Temperature differences have a weak effect on the main flow.",
+          "Buoyancy and imposed motion both influence the flow and heat-transfer pattern.",
+          "Buoyancy dominates over imposed inertia. Flow structure is set mainly by density differences."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["grashof", "froude", "rayleigh"]
+  },
+  {
+    "id": "stanton",
+    "name": "Stanton number",
+    "symbol": "\\text{St}_h",
+    "aliases": [],
+    "named_after": ["Thomas Ernest Stanton (1865-1931)"],
+    "description": "Measures surface heat-transfer rate relative to the thermal capacity advected by a flow. It indicates what fraction of the moving fluid thermal capacity is exchanged.",
+    "numer": {
+      "quantities": ["convective-heat-transfer-coefficient"],
+      "exponents": [1],
+      "label": "surface heat transfer"
+    },
+    "denom": {
+      "quantities": ["density", "specific-heat-capacity", "velocity"],
+      "exponents": [1, 1, 1],
+      "label": "convective heat capacity flow"
+    },
+    "regimes": {
+      "convective heat transfer": {
+        "thresholds": [0, 0.001, 0.01, null],
+        "labels": ["weak exchange", "moderate exchange", "strong exchange"],
+        "descriptions": [
+          "Only a small fraction of the bulk thermal capacity is exchanged with the surface over the reference length.",
+          "Surface heat transfer has a measurable effect on the moving fluid temperature.",
+          "Surface exchange is strong relative to the advected thermal capacity of the flow."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["nusselt", "reynolds", "prandtl"]
+  },
+  {
+    "id": "eckert",
+    "name": "Eckert number",
+    "symbol": "\\text{Ec}",
+    "aliases": [],
+    "named_after": ["Ernst Rudolph Georg Eckert (1904-2004)"],
+    "description": "Measures kinetic energy relative to sensible enthalpy based on a temperature difference. It indicates when viscous or compressible heating affects the thermal field.",
+    "numer": {
+      "quantities": ["velocity"],
+      "exponents": [2],
+      "label": "kinetic energy"
+    },
+    "denom": {
+      "quantities": ["specific-heat-capacity", "surface-ambient-temperature-difference"],
+      "exponents": [1, 1],
+      "label": "sensible enthalpy"
+    },
+    "regimes": {
+      "high speed heat transfer": {
+        "thresholds": [0, 0.01, 1, null],
+        "labels": [
+          "thermal",
+          "viscous heating relevant",
+          "kinetic energy dominated"
+        ],
+        "descriptions": [
+          "Kinetic energy is small compared with the imposed thermal energy scale.",
+          "Conversion of kinetic energy into heat can affect temperature predictions, especially near walls or shocks.",
+          "Kinetic energy is comparable to or larger than the sensible heat scale. Compressible heating effects are central."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["brinkman", "mach", "stanton"]
+  },
+  {
+    "id": "brinkman",
+    "name": "Brinkman number",
+    "symbol": "\\text{Br}",
+    "aliases": [],
+    "named_after": ["Henri Coenraad Brinkman (1908-1961)"],
+    "description": "Measures viscous heat generation relative to conductive heat removal. It indicates whether dissipation heating must be included in an energy balance.",
+    "numer": {
+      "quantities": ["dynamic-viscosity", "velocity"],
+      "exponents": [1, 2],
+      "label": "viscous heat generation"
+    },
+    "denom": {
+      "quantities": ["thermal-conductivity", "surface-ambient-temperature-difference"],
+      "exponents": [1, 1],
+      "label": "conductive heat removal"
+    },
+    "regimes": {
+      "viscous heating": {
+        "thresholds": [0, 0.01, 1, null],
+        "labels": ["negligible", "important", "dominant"],
+        "descriptions": [
+          "Viscous dissipation produces little heat compared with conductive transport.",
+          "Viscous heating can noticeably alter local temperatures and heat-transfer rates.",
+          "Viscous dissipation is comparable to or larger than conductive heat removal."
+        ]
+      }
+    },
+    "domain": "heat-transfer",
+    "see_also": ["eckert", "prandtl", "nusselt"]
+  },
+  {
+    "id": "drag-coefficient",
+    "name": "Drag coefficient",
+    "symbol": "C_D",
+    "aliases": [],
+    "named_after": [],
+    "description": "Measures drag force normalized by dynamic pressure and reference area. It compares the aerodynamic or hydrodynamic resistance of bodies across speeds and scales.",
+    "numer": {
+      "quantities": ["force"],
+      "exponents": [1],
+      "label": "drag force"
+    },
+    "denom": {
+      "quantities": ["density", "velocity", "area"],
+      "exponents": [1, 2, 1],
+      "label": "dynamic pressure force"
+    },
+    "regimes": {
+      "body drag": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": ["low drag", "moderate drag", "high drag"],
+        "descriptions": [
+          "Drag is small relative to the dynamic pressure force on the reference area, typical of streamlined bodies at favorable conditions.",
+          "Drag is a significant fraction of the dynamic pressure force and depends strongly on shape and Reynolds number.",
+          "Pressure drag, separation, or form effects are large relative to the reference dynamic pressure force."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["reynolds", "pressure-coefficient", "skin-friction"]
+  },
+  {
+    "id": "lift-coefficient",
+    "name": "Lift coefficient",
+    "symbol": "C_L",
+    "aliases": [],
+    "named_after": [],
+    "description": "Measures lift force normalized by dynamic pressure and reference area. It compares lifting performance across geometries, speeds, and fluid densities.",
+    "numer": {
+      "quantities": ["force"],
+      "exponents": [1],
+      "label": "lift force"
+    },
+    "denom": {
+      "quantities": ["density", "velocity", "area"],
+      "exponents": [1, 2, 1],
+      "label": "dynamic pressure force"
+    },
+    "regimes": {
+      "lifting surfaces": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": ["weak lift", "moderate lift", "strong lift"],
+        "descriptions": [
+          "Lift is small relative to the dynamic pressure force on the reference area.",
+          "Lift is appreciable and sensitive to angle of attack, shape, and Reynolds number.",
+          "Lift is large relative to the reference dynamic pressure force; stall, circulation, or strong pressure differences may dominate behavior."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["drag-coefficient", "pressure-coefficient", "reynolds"]
+  },
+  {
+    "id": "pressure-coefficient",
+    "name": "Pressure coefficient",
+    "symbol": "C_p",
+    "aliases": [],
+    "named_after": [],
+    "description": "Measures static pressure variation normalized by dynamic pressure. It maps local pressure loading on bodies and surfaces in a flow.",
+    "numer": {
+      "quantities": ["reference-pressure-difference"],
+      "exponents": [1],
+      "label": "local pressure difference"
+    },
+    "denom": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "dynamic pressure"
+    },
+    "regimes": {
+      "external flow": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": [
+          "weak pressure variation",
+          "moderate pressure loading",
+          "strong pressure loading"
+        ],
+        "descriptions": [
+          "Static pressure variations are small compared with the dynamic pressure scale.",
+          "Pressure loading is an important part of the force balance on the body or surface.",
+          "Pressure differences are comparable to or larger than the dynamic pressure scale."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["euler", "drag-coefficient", "lift-coefficient"]
+  },
+  {
+    "id": "skin-friction",
+    "name": "Skin-friction coefficient",
+    "symbol": "C_f",
+    "aliases": [],
+    "named_after": [],
+    "description": "Measures wall shear stress normalized by dynamic pressure. It indicates the frictional part of momentum loss along a surface.",
+    "numer": {
+      "quantities": ["shear-stress"],
+      "exponents": [1],
+      "label": "wall shear stress"
+    },
+    "denom": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "dynamic pressure"
+    },
+    "regimes": {
+      "wall bounded flow": {
+        "thresholds": [0, 0.001, 0.01, null],
+        "labels": ["low friction", "moderate friction", "high friction"],
+        "descriptions": [
+          "Wall shear is small compared with the dynamic pressure scale, as in high Reynolds number streamlined flows.",
+          "Wall shear is a measurable part of the momentum balance.",
+          "Wall shear is large relative to dynamic pressure, often indicating strong viscous effects or roughness."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["reynolds", "drag-coefficient", "pressure-coefficient"]
+  },
+  {
+    "id": "cavitation",
+    "name": "Cavitation number",
+    "symbol": "\\sigma_c",
+    "aliases": [],
+    "named_after": [],
+    "description": "Measures pressure margin above vapor pressure relative to dynamic pressure. It indicates how close a liquid flow is to forming vapor cavities.",
+    "numer": {
+      "quantities": ["pressure-margin-to-vapor"],
+      "exponents": [1],
+      "label": "pressure margin to vapor pressure"
+    },
+    "denom": {
+      "quantities": ["density", "velocity"],
+      "exponents": [1, 2],
+      "label": "dynamic pressure"
+    },
+    "regimes": {
+      "cavitating flow": {
+        "thresholds": [0, 1, 10, null],
+        "labels": [
+          "cavitation prone",
+          "incipient or partial cavitation",
+          "cavitation suppressed"
+        ],
+        "descriptions": [
+          "Dynamic pressure is large compared with the pressure margin to vapor pressure. Cavitation is likely in low-pressure regions.",
+          "Cavitation may appear locally depending on geometry, nuclei, and unsteady pressure fluctuations.",
+          "The pressure margin is large relative to dynamic pressure. Cavitation is generally suppressed."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["euler", "pressure-coefficient", "weber"]
+  },
+  {
+    "id": "rossby",
+    "name": "Rossby number",
+    "symbol": "\\text{Ro}",
+    "aliases": [],
+    "named_after": ["Carl-Gustaf Rossby (1898-1957)"],
+    "description": "Measures inertial motion relative to rotational or Coriolis effects. It indicates whether rotation controls the flow dynamics.",
+    "numer": {
+      "quantities": ["velocity"],
+      "exponents": [1],
+      "label": "inertia"
+    },
+    "denom": {
+      "quantities": ["angular-velocity", "length"],
+      "exponents": [1, 1],
+      "label": "rotation"
+    },
+    "regimes": {
+      "rotating flow": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": ["rotation dominated", "mixed", "inertia dominated"],
+        "descriptions": [
+          "Coriolis effects dominate inertia. Flow tends toward geostrophic or columnar balance.",
+          "Rotation and inertia both influence trajectories, waves, and instabilities.",
+          "Inertial motion dominates over rotation. Coriolis deflection is a secondary correction."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["ekman", "froude", "reynolds"]
+  },
+  {
+    "id": "ekman",
+    "name": "Ekman number",
+    "symbol": "\\text{Ek}",
+    "aliases": [],
+    "named_after": ["Vagn Walfrid Ekman (1874-1954)"],
+    "description": "Measures viscous diffusion relative to rotational effects. It indicates the importance of viscous boundary layers in rotating flows.",
+    "numer": {
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [1],
+      "label": "viscous diffusion"
+    },
+    "denom": {
+      "quantities": ["angular-velocity", "length"],
+      "exponents": [1, 2],
+      "label": "rotation"
+    },
+    "regimes": {
+      "rotating flow": {
+        "thresholds": [0, 0.01, 1, null],
+        "labels": [
+          "rotation dominated",
+          "mixed viscous-rotating",
+          "viscous dominated"
+        ],
+        "descriptions": [
+          "Rotation is strong compared with viscous diffusion. Thin Ekman layers control boundary adjustment.",
+          "Viscous diffusion and rotation both influence the flow over the characteristic length.",
+          "Viscous diffusion acts faster than rotational adjustment. Rotation has a weak dynamical effect."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["rossby", "taylor", "reynolds"]
+  },
+  {
+    "id": "taylor",
+    "name": "Taylor number",
+    "symbol": "\\text{Ta}",
+    "aliases": [],
+    "named_after": ["Geoffrey Ingram Taylor (1886-1975)"],
+    "description": "Measures rotational forcing relative to viscous diffusion. It indicates when rotating shear flows become susceptible to Taylor-type instabilities.",
+    "numer": {
+      "quantities": ["angular-velocity", "length"],
+      "exponents": [2, 4],
+      "label": "rotation"
+    },
+    "denom": {
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [2],
+      "label": "viscous diffusion"
+    },
+    "regimes": {
+      "rotating instability": {
+        "thresholds": [0, 1, 1700, null],
+        "labels": [
+          "viscous dominated",
+          "rotation important",
+          "instability prone"
+        ],
+        "descriptions": [
+          "Viscous diffusion damps rotational shear before strong inertial structures develop.",
+          "Rotation competes with viscous diffusion and can alter stability and momentum transport.",
+          "Rotational forcing is strong enough that Taylor-like vortices or related instabilities may occur, depending on geometry."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["ekman", "rossby", "reynolds"]
+  },
+  {
+    "id": "helmholtz",
+    "name": "Helmholtz number",
+    "symbol": "\\text{He}",
+    "aliases": [],
+    "named_after": ["Hermann von Helmholtz (1821-1894)"],
+    "description": "Measures acoustic length scale relative to wavelength through frequency and sound speed. It indicates whether a body or domain is acoustically compact.",
+    "numer": {
+      "quantities": ["frequency", "length"],
+      "exponents": [1, 1],
+      "label": "acoustic length scale"
+    },
+    "denom": {
+      "quantities": ["speed-of-sound"],
+      "exponents": [1],
+      "label": "sound speed"
+    },
+    "regimes": {
+      "acoustics": {
+        "thresholds": [0, 0.1, 1, null],
+        "labels": ["compact", "finite wavelength", "wave dominated"],
+        "descriptions": [
+          "The object or domain is small relative to the acoustic wavelength and can often be treated as acoustically compact.",
+          "Wavelength effects are noticeable and spatial phase variation matters.",
+          "The acoustic wavelength is comparable to or smaller than the characteristic length. Resonance and wave structure dominate."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["mach", "strouhal", "womersley"]
+  },
+  {
+    "id": "roshko",
+    "name": "Roshko number",
+    "symbol": "\\text{Ro}_s",
+    "aliases": [],
+    "named_after": ["Anatol Roshko (1923-2017)"],
+    "description": "Measures vortex-shedding frequency relative to viscous diffusion. It combines Strouhal and Reynolds effects for wake oscillations.",
+    "numer": {
+      "quantities": ["frequency", "length"],
+      "exponents": [1, 2],
+      "label": "vortex shedding"
+    },
+    "denom": {
+      "quantities": ["kinematic-viscosity"],
+      "exponents": [1],
+      "label": "viscous diffusion"
+    },
+    "regimes": {
+      "wake oscillations": {
+        "thresholds": [0, 1, 10, null],
+        "labels": [
+          "viscous wake",
+          "periodic shedding",
+          "high frequency shedding"
+        ],
+        "descriptions": [
+          "Viscous diffusion is fast relative to the shedding time scale, suppressing organized vortex formation.",
+          "Unsteady shedding and viscous diffusion are comparable, supporting coherent periodic wakes.",
+          "Shedding is rapid compared with viscous diffusion and wake dynamics are dominated by inertia."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["strouhal", "reynolds", "womersley"]
+  },
+  {
+    "id": "knudsen",
+    "name": "Knudsen number",
+    "symbol": "\\text{Kn}",
+    "aliases": [],
+    "named_after": ["Martin Knudsen (1871-1949)"],
+    "description": "Measures molecular mean free path relative to a macroscopic length. It indicates whether continuum fluid assumptions are valid.",
+    "numer": {
+      "quantities": ["mean-free-path"],
+      "exponents": [1],
+      "label": "molecular length"
+    },
+    "denom": {
+      "quantities": ["length"],
+      "exponents": [1],
+      "label": "continuum length"
+    },
+    "regimes": {
+      "rarefied gas flow": {
+        "thresholds": [0, 0.01, 0.1, 10, null],
+        "labels": ["continuum", "slip", "transition", "free molecular"],
+        "descriptions": [
+          "Molecular mean free path is much smaller than the geometry. Navier-Stokes continuum models are usually appropriate.",
+          "Continuum behavior mostly holds, but velocity slip and temperature jump at boundaries can be important.",
+          "Continuum assumptions break down and kinetic effects must be modeled explicitly.",
+          "Molecular collisions with boundaries dominate over intermolecular collisions. Free molecular or kinetic descriptions are required."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["mach", "reynolds", "helmholtz"]
+  },
+  {
+    "id": "archimedes",
+    "name": "Archimedes number",
+    "symbol": "\\text{Ar}",
+    "aliases": [],
+    "named_after": ["Archimedes (c. 287-c. 212 BCE)"],
+    "description": "Measures buoyant forcing on a particle or bubble relative to viscous resistance. It indicates the settling or rising regime set by density contrast.",
+    "numer": {
+      "quantities": [
+        "gravitational-acceleration",
+        "length",
+        "density",
+        "solid-fluid-density-difference"
+      ],
+      "exponents": [1, 3, 1, 1],
+      "label": "buoyancy"
+    },
+    "denom": {
+      "quantities": ["dynamic-viscosity"],
+      "exponents": [2],
+      "label": "viscous resistance"
+    },
+    "regimes": {
+      "particle settling": {
+        "thresholds": [0, 1, 1000, null],
+        "labels": [
+          "viscous settling",
+          "transitional settling",
+          "inertial settling"
+        ],
+        "descriptions": [
+          "Viscous resistance dominates buoyant motion. Particles or bubbles settle slowly in creeping flow.",
+          "Buoyancy, viscosity, and inertia are all important. Wake effects and shape sensitivity may appear.",
+          "Buoyant forcing is large compared with viscous resistance. Inertial wakes and unsteady paths become important."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["galileo", "reynolds", "shields"]
+  },
+  {
+    "id": "shields",
+    "name": "Shields parameter",
+    "symbol": "\\theta",
+    "aliases": ["Shields number"],
+    "named_after": ["Albert Frank Shields (1908-1974)"],
+    "description": "Measures bed shear stress relative to submerged particle weight. It indicates whether grains on a bed remain stable or begin to move.",
+    "numer": {
+      "quantities": ["shear-stress"],
+      "exponents": [1],
+      "label": "bed shear stress"
+    },
+    "denom": {
+      "quantities": [
+        "solid-fluid-density-difference",
+        "gravitational-acceleration",
+        "length"
+      ],
+      "exponents": [1, 1, 1],
+      "label": "submerged particle weight"
+    },
+    "regimes": {
+      "sediment transport": {
+        "thresholds": [0, 0.03, 0.06, null],
+        "labels": ["stable bed", "incipient motion", "mobile bed"],
+        "descriptions": [
+          "Bed shear is below the typical threshold for sustained grain motion.",
+          "Grains are near the onset of motion; transport depends sensitively on particle Reynolds number, packing, and turbulence.",
+          "Bed shear is high enough for sustained sediment motion and bed-load transport."
+        ]
+      }
+    },
+    "domain": "fluid-mechanics",
+    "see_also": ["reynolds", "archimedes", "froude"]
   }
 ]
