@@ -14,7 +14,7 @@ pages:
   script:
     - python3 scripts/generate_site.py
     - cd site
-    - hugo --gc --minify --baseURL "$CI_PAGES_URL"
+    - hugo --gc --minify
     - mv public ../public
     - cd ..
     - test -f public/index.html
